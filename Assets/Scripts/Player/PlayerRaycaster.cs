@@ -60,15 +60,25 @@ namespace Assets.Scripts.Player {
         private void Drop(List<GameObject> colliderGameObjects) {
             var closestGameObject = ClosestGameObject(colliderGameObjects, "Table");
 
-            if (closestGameObject != null && closestGameObject.transform.childCount == 0) {
-                _takenObject.transform.parent = closestGameObject.transform;
-                _takenObject.transform.localPosition = new Vector3(0, _takenObject.transform.localPosition.y, 0);
-                _takenObject.transform.rotation = Quaternion.identity;
+            if (closestGameObject != null) {
+                var objectOnTable = false;
+                foreach (var tableChild in closestGameObject.transform.GetComponentsInChildren<Transform>()) {
+                    if (tableChild.tag.Equals("Catchable"))
+                        objectOnTable = true;
+                }
+
+                if (!objectOnTable)
+                {
+                    var tableCollider = closestGameObject.GetComponent<BoxCollider>();
+                    _takenObject.transform.parent = closestGameObject.transform;
+                    _takenObject.transform.localPosition = new Vector3(tableCollider.center.x, tableCollider.size.y + (1 - tableCollider.center.y) * 2, tableCollider.center.z);
+                    _takenObject.transform.rotation = Quaternion.identity;
+                }
             } else if ((closestGameObject = ClosestGameObject(colliderGameObjects, "Trash")) != null) {
                 Destroy(_takenObject);
                 _takenObject = null;
             } else {
-                _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 _takenObject.transform.parent = _interactive.transform;
             }
             _takenObject = null;
