@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Interactive;
+using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
@@ -67,6 +68,7 @@ namespace Assets.Scripts.Player
         {
             _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             _takenObject.transform.parent = _interactive.transform;
+            _takenObject.GetComponent<Catchable>().EnableUi(true);
             _takenObject = null;
         }
 
@@ -78,6 +80,7 @@ namespace Assets.Scripts.Player
             obj.transform.rotation = new Quaternion();
             obj.transform.position = position;
             _takenObject = obj;
+            _takenObject.GetComponent<Catchable>().EnableUi(false);
         }
     }
 }
