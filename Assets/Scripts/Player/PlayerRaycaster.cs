@@ -58,12 +58,15 @@ namespace Assets.Scripts.Player {
         }
 
         private void Drop(List<GameObject> colliderGameObjects) {
-            var closestTableGameObject = ClosestGameObject(colliderGameObjects, "Table");
+            var closestGameObject = ClosestGameObject(colliderGameObjects, "Table");
 
-            if (closestTableGameObject != null && closestTableGameObject.transform.childCount == 0) {
-                _takenObject.transform.parent = closestTableGameObject.transform;
+            if (closestGameObject != null && closestGameObject.transform.childCount == 0) {
+                _takenObject.transform.parent = closestGameObject.transform;
                 _takenObject.transform.localPosition = new Vector3(0, _takenObject.transform.localPosition.y, 0);
                 _takenObject.transform.rotation = Quaternion.identity;
+            } else if ((closestGameObject = ClosestGameObject(colliderGameObjects, "Trash")) != null) {
+                Destroy(_takenObject);
+                _takenObject = null;
             } else {
                 _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 _takenObject.transform.parent = _interactive.transform;
