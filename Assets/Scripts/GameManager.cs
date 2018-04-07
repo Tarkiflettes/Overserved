@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             childObject.transform.parent = parentObject.transform;
             childObject.transform.localPosition = new Vector3(0, 0.5f, 0);
             childObject.transform.rotation = Quaternion.identity;
+            childObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 }

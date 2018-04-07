@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33015554133260126}
   - component: {fileID: 65951827887558822}
   - component: {fileID: 54213396942013560}
+  - component: {fileID: 114616311296494810}
   m_Layer: 0
   m_Name: Plate
   m_TagString: Catchable
@@ -264,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 1248258452822916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4271433844687356}
   m_Father: {fileID: 4540116174535162}
@@ -853,7 +854,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.45759177, z: 1}
+  m_Size: {x: 1.8, y: 0.5, z: 1.8}
   m_Center: {x: 0, y: 0.2712041, z: 0}
 --- !u!95 &95572477243704846
 Animator:
@@ -872,3 +873,14 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114616311296494810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1139007992856236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d86b3b501ae9bb84e99025675812f9d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

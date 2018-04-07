@@ -75,16 +75,16 @@ namespace Assets.Scripts.Player {
                     _takenObject.transform.localPosition = new Vector3(tableCollider.center.x, tableCollider.size.y + (1 - tableCollider.center.y) * 2 - _takenObject.GetComponent<BoxCollider>().center.y, tableCollider.center.z);
                     _takenObject.transform.rotation = Quaternion.identity;
                     _takenObject = null;
-                    //GetComponent<FixedJoint>().connectedBody = null;
+                    GetComponent<FixedJoint>().connectedBody = null;
                 }
             } else if ((closestGameObject = ClosestGameObject(colliderGameObjects, "Trash")) != null) {
                 Destroy(_takenObject);
                 _takenObject = null;
-                //GetComponent<FixedJoint>().connectedBody = null;
+                GetComponent<FixedJoint>().connectedBody = null;
             } else {
                 _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 _takenObject.transform.parent = _interactive.transform;
-                //GetComponent<FixedJoint>().connectedBody = null;
+                GetComponent<FixedJoint>().connectedBody = null;
                 _takenObject = null;
             }
         }
@@ -108,12 +108,12 @@ namespace Assets.Scripts.Player {
 
         private void Catch(GameObject obj) {
             obj.transform.parent = this.transform;
-            obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             var position = transform.forward + transform.position;
             obj.transform.rotation = new Quaternion();
             obj.transform.position = position;
             _takenObject = obj;
-            //GetComponent<FixedJoint>().connectedBody = _takenObject.GetComponent<Rigidbody>();
+            GetComponent<FixedJoint>().connectedBody = _takenObject.GetComponent<Rigidbody>();
         }
     }
 }
