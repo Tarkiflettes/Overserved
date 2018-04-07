@@ -64,7 +64,7 @@ namespace Assets.Scripts.Player
             else
             {
                 midpoint = tfs[0].position;
-                distance = tfs[0].position.magnitude;
+                distance = _minHeight;
             }
 
             // Move camera a certain distance
