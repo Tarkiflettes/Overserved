@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
-{
-    public class PlayerRaycaster : MonoBehaviour
-    {
+namespace Assets.Scripts.Player {
+    public class PlayerRaycaster : MonoBehaviour {
         public float RayDistance = 1.5f;
 
-        public bool HasObject
-        {
+        public bool HasObject {
             get { return _takenObject != null; }
         }
 
@@ -20,20 +17,17 @@ namespace Assets.Scripts.Player
         private PlayerController _playerController;
         private Joystick _joystick;
 
-        private void Start()
-        {
+        private void Start() {
             _takenObject = null;
             _interactive = GameObject.Find("/Interactive");
         }
 
-        private void FixedUpdate()
-        {
-            if (_joystick == null)
-            {
+        private void FixedUpdate() {
+            if (_joystick == null) {
                 _playerController = GetComponent<PlayerController>();
                 _joystick = _playerController.Joystick;
             }
-            
+
             var colliderGameObjects = new List<GameObject>();
 
             var charContr = GetComponent<CharacterController>();
@@ -45,64 +39,46 @@ namespace Assets.Scripts.Player
                 transform.forward,
                 RayDistance);
 
-            if (hits.Length > 0)
-            {
-                foreach (var hit in hits)
-                {
+            if (hits.Length > 0) {
+                foreach (var hit in hits) {
                     colliderGameObjects.Add(hit.collider.gameObject);
                 }
             }
 
-            if (Input.GetButtonDown(_joystick.Action))
-            {
-                if (_takenObject != null)
-                {
+            if (Input.GetButtonDown(_joystick.Action)) {
+                if (_takenObject != null) {
                     Drop(colliderGameObjects);
-                }
-                else if (colliderGameObjects.Count > 0)
-                {
+                } else if (colliderGameObjects.Count > 0) {
                     var closestTableGameObject = ClosestGameObject(colliderGameObjects, "Catchable");
-                    if (closestTableGameObject != null) 
-                    {
+                    if (closestTableGameObject != null) {
                         Catch(closestTableGameObject);
                     }
                 }
             }
         }
 
-        private void Drop(List<GameObject> colliderGameObjects)
-        {
-            _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            if (colliderGameObjects.Count > 0)
-            {
-                var closestTableGameObject = ClosestGameObject(colliderGameObjects, "Table");
+        private void Drop(List<GameObject> colliderGameObjects) {
+            var closestTableGameObject = ClosestGameObject(colliderGameObjects, "Table");
 
-                if (closestTableGameObject != null) 
-                {
-                    _takenObject.transform.parent = closestTableGameObject.transform;
-                    _takenObject.transform.localPosition = new Vector3(0, _takenObject.transform.localPosition.y, 0);
-                    _takenObject.transform.rotation = Quaternion.identity;
-                }
-            }
-            else
-            {
+            if (closestTableGameObject != null && closestTableGameObject.transform.childCount == 0) {
+                _takenObject.transform.parent = closestTableGameObject.transform;
+                _takenObject.transform.localPosition = new Vector3(0, _takenObject.transform.localPosition.y, 0);
+                _takenObject.transform.rotation = Quaternion.identity;
+            } else {
+                _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 _takenObject.transform.parent = _interactive.transform;
             }
             _takenObject = null;
         }
 
-        private GameObject ClosestGameObject(List<GameObject> colliderGameObjects, String objectTag)
-        {
+        private GameObject ClosestGameObject(List<GameObject> colliderGameObjects, String objectTag) {
             var minDist = float.MaxValue;
             GameObject closestTableGameObject = null;
             foreach (var tableGameObject
-                in colliderGameObjects)
-            {
-                if (tableGameObject.tag == objectTag)
-                {
+                in colliderGameObjects) {
+                if (tableGameObject.tag == objectTag) {
                     var dist = (tableGameObject.transform.position - transform.position).magnitude;
-                    if (minDist > dist)
-                    {
+                    if (minDist > dist) {
                         minDist = dist;
                         closestTableGameObject = tableGameObject;
                     }
@@ -112,8 +88,7 @@ namespace Assets.Scripts.Player
             return closestTableGameObject;
         }
 
-        private void Catch(GameObject obj)
-        {
+        private void Catch(GameObject obj) {
             obj.transform.parent = this.transform;
             obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             var position = transform.forward + transform.position;
