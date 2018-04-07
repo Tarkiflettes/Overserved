@@ -52,7 +52,6 @@ namespace Assets.Scripts.Player
             if (Input.GetButtonDown(Joystick.Dash) && _currentDashTime == DashTime)
             {
                 _currentDashTime = 0;
-                Debug.Log(Joystick.Dash);
             }
 
             if (_currentDashTime < DashTime)

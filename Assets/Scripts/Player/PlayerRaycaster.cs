@@ -93,7 +93,7 @@ namespace Assets.Scripts.Player
 
         private GameObject ClosestGameObject(List<GameObject> colliderGameObjects, String objectTag)
         {
-            float minDist = float.MaxValue;
+            var minDist = float.MaxValue;
             GameObject closestTableGameObject = null;
             foreach (var tableGameObject
                 in colliderGameObjects)
