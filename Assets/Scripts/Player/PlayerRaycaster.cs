@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
     public class PlayerRaycaster : MonoBehaviour
     {
-        public float RayDistance = 1;
+        public float RayDistance = 1.5f;
 
         public bool HasObject
         {
@@ -29,45 +32,84 @@ namespace Assets.Scripts.Player
             {
                 _playerController = GetComponent<PlayerController>();
                 _joystick = _playerController.Joystick;
-                return;
             }
-
-            RaycastHit hit;
-            GameObject colliderGameObject = null;
+            
+            var colliderGameObjects = new List<GameObject>();
 
             var charContr = GetComponent<CharacterController>();
             var p1 = transform.position + charContr.center + Vector3.up * -charContr.height * 0.5F;
             var p2 = p1 + Vector3.up * charContr.height;
 
-            if (Physics.CapsuleCast(p1, p2,
+            RaycastHit[] hits = Physics.CapsuleCastAll(p1, p2,
                 charContr.radius,
                 transform.forward,
-                out hit,
-                RayDistance,
-                LayerMask.GetMask("RayReceiver")))
+                RayDistance);
+
+            if (hits.Length > 0)
             {
-                colliderGameObject = hit.collider.gameObject;
+                foreach (var hit in hits)
+                {
+                    colliderGameObjects.Add(hit.collider.gameObject);
+                }
             }
 
             if (Input.GetButtonDown(_joystick.Action))
             {
                 if (_takenObject != null)
                 {
-                    Drop();
+                    Drop(colliderGameObjects);
                 }
-                else if (colliderGameObject != null &&
-                         colliderGameObject.tag == "Catchable")
+                else if (colliderGameObjects.Count > 0)
                 {
-                    Catch(colliderGameObject);
+                    var closestTableGameObject = ClosestGameObject(colliderGameObjects, "Catchable");
+                    if (closestTableGameObject != null) 
+                    {
+                        Catch(closestTableGameObject);
+                    }
                 }
             }
         }
 
-        private void Drop()
+        private void Drop(List<GameObject> colliderGameObjects)
         {
             _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            _takenObject.transform.parent = _interactive.transform;
+            if (colliderGameObjects.Count > 0)
+            {
+                var closestTableGameObject = ClosestGameObject(colliderGameObjects, "Table");
+
+                if (closestTableGameObject != null) 
+                {
+                    _takenObject.transform.parent = closestTableGameObject.transform;
+                    _takenObject.transform.localPosition = new Vector3(0, _takenObject.transform.localPosition.y, 0);
+                    _takenObject.transform.rotation = Quaternion.identity;
+                }
+            }
+            else
+            {
+                _takenObject.transform.parent = _interactive.transform;
+            }
             _takenObject = null;
+        }
+
+        private GameObject ClosestGameObject(List<GameObject> colliderGameObjects, String objectTag)
+        {
+            float minDist = float.MaxValue;
+            GameObject closestTableGameObject = null;
+            foreach (var tableGameObject
+                in colliderGameObjects)
+            {
+                if (tableGameObject.tag == objectTag)
+                {
+                    var dist = (tableGameObject.transform.position - transform.position).magnitude;
+                    if (minDist > dist)
+                    {
+                        minDist = dist;
+                        closestTableGameObject = tableGameObject;
+                    }
+                }
+            }
+
+            return closestTableGameObject;
         }
 
         private void Catch(GameObject obj)
