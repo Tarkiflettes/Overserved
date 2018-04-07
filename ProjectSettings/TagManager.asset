@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Catchable
   - Table
+  - SpawnTable
+  - Trash
   layers:
   - Default
   - TransparentFX
