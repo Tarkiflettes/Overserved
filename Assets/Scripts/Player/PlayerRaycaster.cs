@@ -63,16 +63,18 @@ namespace Assets.Scripts.Player {
             if (closestGameObject != null) {
                 var objectOnTable = false;
                 foreach (var tableChild in closestGameObject.transform.GetComponentsInChildren<Transform>()) {
-                    if (tableChild.tag.Equals("Catchable"))
+                    if (tableChild.tag.Equals("Catchable")) {
                         objectOnTable = true;
+                        break;
+                    }
                 }
 
-                if (!objectOnTable)
-                {
+                if (!objectOnTable) {
                     var tableCollider = closestGameObject.GetComponent<BoxCollider>();
                     _takenObject.transform.parent = closestGameObject.transform;
                     _takenObject.transform.localPosition = new Vector3(tableCollider.center.x, tableCollider.size.y + (1 - tableCollider.center.y) * 2 - _takenObject.GetComponent<BoxCollider>().center.y, tableCollider.center.z);
                     _takenObject.transform.rotation = Quaternion.identity;
+                    _takenObject = null;
                     //GetComponent<FixedJoint>().connectedBody = null;
                 }
             } else if ((closestGameObject = ClosestGameObject(colliderGameObjects, "Trash")) != null) {
