@@ -7,12 +7,6 @@ public class Order : MonoBehaviour {
     private List<Food> orderedFood;
     private int maxTime;
 
-    //constructor
-    public Order()
-    {
-
-    }
-
 
 	// Use this for initialization
 	void Start () {
@@ -42,15 +36,15 @@ public class Order : MonoBehaviour {
     }
 
     //toString
-    /*string toString()
+    string toString()
     {
         string aff = "";
         foreach (var food in orderedFood)
         {
-            aff += 
+            aff += food;
         }
         return "";
-    }*/
+    }
     
 }
 

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : MonoBehaviour {
+public class Food {
 
     public enum FoodName {Hamburger,Salad};
     private FoodName name;
+
 
     public Food(FoodName food)
     {
@@ -24,6 +25,11 @@ public class Food : MonoBehaviour {
 
     string getFoodName()
     {
-        //return (string)name;
+        switch (name)
+        {
+            case FoodName.Hamburger: return "Hamburger"; break;
+            case FoodName.Salad: return "Salad"; break;
+            default: return ""; break;
+        }
     }
 }

@@ -8,6 +8,7 @@ public class orderUI : MonoBehaviour {
 	void Start () {
         Order order = new Order();
         order.generateRandomFood(3);
+        Debug.Log(order.ToString());
 	}
 	
 	// Update is called once per frame
