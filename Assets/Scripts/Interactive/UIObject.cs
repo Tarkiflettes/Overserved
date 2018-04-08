@@ -13,6 +13,7 @@ namespace Assets.Scripts.Interactive
 
         void Start()
         {
+            Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
             var childs = GetComponentsInChildren<RectTransform>();
             foreach (var child in childs)
             {
