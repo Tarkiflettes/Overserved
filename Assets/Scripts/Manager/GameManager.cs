@@ -1,60 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Utils;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Assets.Scripts.Manager
 {
-    private List<GameObject> _spawnTableGameObjects;
-
-    private const int SpawnTimer = 100;
-    private int _currentSpawnTimer = 0;
-
-    public static AssetsManager AssetsManager { get; private set; }
-
-    // Use this for initialization
-    void Start ()
-	{
-	    AssetsManager = GetComponent<AssetsManager>();
-	    _spawnTableGameObjects = GameObject.FindGameObjectsWithTag("SpawnTable").ToList();
-    }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
-	{
-	    if (_currentSpawnTimer < SpawnTimer)
-	    {
-	        _currentSpawnTimer++;
-	    }
-	    else
-	    {
-	        _currentSpawnTimer = 0;
-            SpawnInteractive(AssetsManager.Interactives[Mathf.CeilToInt(Random.Range(0, AssetsManager.Interactives.Length))]);
-	    }
-	}
-
-    void SpawnInteractive(GameObject gameObject)
+    public class GameManager : MonoBehaviour
     {
-        _spawnTableGameObjects.Shuffle();
-        int i = 0;
-        GameObject parentObject = null;
-        while (i < _spawnTableGameObjects.Count - 1 && parentObject == null)
-        {
-            if(_spawnTableGameObjects[i].transform.childCount < 1)
-                parentObject = _spawnTableGameObjects[i];
+        private List<GameObject> _spawnTableGameObjects;
 
-            i++;
+        private const int SpawnTimer = 100;
+        private int _currentSpawnTimer = 0;
+
+        public static AssetsManager AssetsManager { get; private set; }
+
+        // Use this for initialization
+        void Start ()
+        {
+            AssetsManager = GetComponent<AssetsManager>();
+            _spawnTableGameObjects = GameObject.FindGameObjectsWithTag("SpawnTable").ToList();
+        }
+	
+        // Update is called once per frame
+        void FixedUpdate ()
+        {
+            if (_currentSpawnTimer < SpawnTimer)
+            {
+                _currentSpawnTimer++;
+            }
+            else
+            {
+                _currentSpawnTimer = 0;
+                SpawnInteractive(AssetsManager.Interactives[Mathf.CeilToInt(Random.Range(0, AssetsManager.Interactives.Length))]);
+            }
         }
 
-        if (parentObject != null) 
+        void SpawnInteractive(GameObject gameObject)
         {
-            GameObject childObject = Instantiate(gameObject) as GameObject;
+            _spawnTableGameObjects.Shuffle();
+            var i = 0;
+            GameObject parentObject = null;
+            while (i < _spawnTableGameObjects.Count - 1 && parentObject == null)
+            {
+                if(_spawnTableGameObjects[i].transform.childCount < 1)
+                    parentObject = _spawnTableGameObjects[i];
 
-            childObject.transform.parent = parentObject.transform;
-            childObject.transform.localPosition = new Vector3(0, 0.5f, 0);
-            childObject.transform.rotation = Quaternion.identity;
+                i++;
+            }
+
+            if (parentObject != null) 
+            {
+                var childObject = Instantiate(gameObject);
+
+                childObject.transform.parent = parentObject.transform;
+                childObject.transform.localPosition = new Vector3(0, 0.5f, 0);
+                childObject.transform.rotation = Quaternion.identity;
+            }
         }
+
+
     }
-
-
 }

@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Table
+namespace Assets.Scripts.Environment
 {
+    public class Table
+    {
 
-    private GameObject _tableGameObject;
-    private GameObject[] _seats;
+        private GameObject _tableGameObject;
+        private GameObject[] _seats;
 
-    public Table(GameObject tableGameObject) {
-        _tableGameObject = tableGameObject;
-        
-
-
+        public Table(GameObject tableGameObject) {
+            _tableGameObject = tableGameObject;
+        }
     }
 }
