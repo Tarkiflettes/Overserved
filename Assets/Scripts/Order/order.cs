@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Order : MonoBehaviour {
+public class Order {
 
-    private List<Food> orderedFood;
+    List<Food> orderedFood = new List<Food>();
     private int maxTime;
 
 
@@ -29,21 +29,20 @@ public class Order : MonoBehaviour {
         for(int i=0; i<nbr; i++)
         {
             int nbrOfDifferentFood = Food.FoodName.GetNames(typeof(Food.FoodName)).Length;
-            Debug.Log(nbrOfDifferentFood);
             Food.FoodName choice = (Food.FoodName)Random.Range(0, nbrOfDifferentFood);
             addFoodWithName(choice);
         }
     }
 
     //toString
-    string toString()
+    public string toString()
     {
         string aff = "";
         foreach (var food in orderedFood)
         {
-            aff += food;
+            aff += food.getFoodName()+" ";
         }
-        return "";
+        return aff;
     }
     
 }

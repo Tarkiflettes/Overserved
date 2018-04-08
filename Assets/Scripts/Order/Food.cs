@@ -23,7 +23,7 @@ public class Food {
 		
 	}
 
-    string getFoodName()
+    public string getFoodName()
     {
         switch (name)
         {
