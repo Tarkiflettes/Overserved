@@ -56,10 +56,15 @@ namespace Assets.Scripts.Player
                 midpoint = averagePos / tfs.Count;
                 distance = maxDistance;
             }
-            else
+            else if (tfs.Count == 2)
             {
                 midpoint = (tfs[0].position + tfs[1].position) / 2f;
                 distance = (tfs[0].position - tfs[1].position).magnitude;
+            }
+            else
+            {
+                midpoint = tfs[0].position;
+                distance = _minHeight;
             }
 
             // Move camera a certain distance

@@ -2,14 +2,21 @@
 
 namespace Assets.Scripts.Interactive
 {
-    public class Catchable : MonoBehaviour {
-        
-        private void Start () {
-		
+    public class Catchable : Interactive
+    {
+
+        void OnGUI()
+        {
+            base.InitGui();
         }
 
         private void Update () {
-		
+
         }
+
+        public override void Interact()
+        {
+        }
+
     }
 }

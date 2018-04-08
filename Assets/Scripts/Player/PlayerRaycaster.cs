@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+﻿using Assets.Scripts.Interactive;
 using UnityEngine;
 
 namespace Assets.Scripts.Player {
@@ -75,17 +76,17 @@ namespace Assets.Scripts.Player {
                     _takenObject.transform.localPosition = new Vector3(tableCollider.center.x, tableCollider.size.y + (1 - tableCollider.center.y) * 2 - _takenObject.GetComponent<BoxCollider>().center.y, tableCollider.center.z);
                     _takenObject.transform.rotation = Quaternion.identity;
                     _takenObject = null;
-                    //GetComponent<FixedJoint>().connectedBody = null;
+                    _takenObject.GetComponent<Catchable>().EnableUi(true);
                 }
             } else if ((closestGameObject = ClosestGameObject(colliderGameObjects, "Trash")) != null) {
                 Destroy(_takenObject);
                 _takenObject = null;
-                //GetComponent<FixedJoint>().connectedBody = null;
+                _takenObject.GetComponent<Catchable>().EnableUi(true);
             } else {
                 _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 _takenObject.transform.parent = _interactive.transform;
-                //GetComponent<FixedJoint>().connectedBody = null;
                 _takenObject = null;
+                _takenObject.GetComponent<Catchable>().EnableUi(true);
             }
         }
 
@@ -104,6 +105,7 @@ namespace Assets.Scripts.Player {
             }
 
             return closestTableGameObject;
+
         }
 
         private void Catch(GameObject obj) {
@@ -113,7 +115,7 @@ namespace Assets.Scripts.Player {
             obj.transform.rotation = new Quaternion();
             obj.transform.position = position;
             _takenObject = obj;
-            //GetComponent<FixedJoint>().connectedBody = _takenObject.GetComponent<Rigidbody>();
+            _takenObject.GetComponent<Catchable>().EnableUi(false);
         }
     }
 }
