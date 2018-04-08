@@ -26,7 +26,7 @@ public class orderUI : MonoBehaviour {
         List<Food> foods = order.getOrderedFood();
         foreach(var food in foods)
         {
-            AddTextToCanvas(food.getFoodName(), this.gameObject);
+            //AddTextToCanvas(food.getFoodName(), this.gameObject);
             Debug.Log(food.getFoodName());
         }
     }
@@ -41,6 +41,11 @@ public class orderUI : MonoBehaviour {
         text.material = ArialFont.material;
 
         return text;
+    }
+
+    public void addImageToCanvas()
+    {
+
     }
 
 
