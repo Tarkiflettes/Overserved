@@ -53,8 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interactives:
-  - {fileID: 1139007992856236, guid: 45adf29d57b9f2641811e4816290a18e, type: 2}
+  - {fileID: 1635547528396072, guid: 45adf29d57b9f2641811e4816290a18e, type: 2}
   - {fileID: 1139007992856236, guid: 681d3da7e881a5b479dad563f05070ac, type: 2}
+  Clients:
+  - {fileID: 1471014385769272, guid: 8627e1e9b232f0647bdf7067690c61ba, type: 2}
+  ClientSpawner: {fileID: 0}
 --- !u!114 &114863910937408956
 MonoBehaviour:
   m_ObjectHideFlags: 1
