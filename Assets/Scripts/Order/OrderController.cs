@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OrderController : MonoBehaviour {
 
+    public List<Order> orderList = new List<Order>();
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +15,9 @@ public class OrderController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public List<Order> getOrderList()
+    {
+        return orderList;
+    }
 }

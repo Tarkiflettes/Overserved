@@ -34,6 +34,11 @@ public class Order {
         return aff;
     }
     
+    //Getters
+    public List<Food> getOrderedFood()
+    {
+        return orderedFood;
+    }
 }
 
 
