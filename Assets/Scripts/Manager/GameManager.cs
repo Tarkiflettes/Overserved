@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.IA;
+using Assets.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour {
     private int _maxFamilySize = 1;
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour {
 
         // ********** CLIENT SPAWN
         if (_currentClientSpawnTimer < _clientSpawnTimer) {
-            //_currentClientSpawnTimer++;
+            _currentClientSpawnTimer++;
         } else {
             _currentClientSpawnTimer = 0;
             RandommizeClientSpawnTimer();
@@ -85,10 +88,14 @@ public class GameManager : MonoBehaviour {
             foreach (var clientGameObject in gameObjects) {
                 var seat = table.PickSeat();
                 if (seat != null) {
-                    GameObject instanceGameObject = Instantiate(clientGameObject);
-                    instanceGameObject.transform.position = new Vector3(AssetsManager.ClientSpawner.transform.position.x, 1, AssetsManager.ClientSpawner.transform.position.z);
+                    Instantiate(clientGameObject);
+                    clientGameObject.SetActive(false);
+                    clientGameObject.GetComponent<ClientIA>().GetComponent<NavMeshAgent>().Warp(new Vector3(AssetsManager.ClientSpawner.transform.position.x, 1, AssetsManager.ClientSpawner.transform.position.z));
 
-                    clientGameObject.GetComponent<ClientIA>().Destination = seat.SeatGameObject.transform.position;
+                    Debug.Log(seat.SeatGameObject.transform.position);
+                    clientGameObject.GetComponent<ClientIA>().MoveTo(seat.SeatGameObject.transform.position);
+
+                    clientGameObject.SetActive(true);
                 }
             }
         }

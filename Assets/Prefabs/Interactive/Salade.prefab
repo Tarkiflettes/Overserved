@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 23495799443283140}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Catchable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 54990589315814510}
   m_Layer: 0
   m_Name: Salade
-  m_TagString: Untagged
+  m_TagString: Catchable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,7 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa0162dd00def14fb0e9f9efc7eb6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
   Inclinaison: 0
 --- !u!114 &114443076734058650
 MonoBehaviour:
@@ -351,7 +350,7 @@ RectTransform:
   m_GameObject: {fileID: 1151364119657826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.05}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 224613901319905082}
   - {fileID: 224215928224278762}

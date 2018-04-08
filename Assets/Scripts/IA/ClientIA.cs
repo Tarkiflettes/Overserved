@@ -1,32 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class ClientIA : MonoBehaviour
+namespace Assets.Scripts.IA
 {
+    public class ClientIA : MonoBehaviour
+    {
+        public bool MovingToDestination { get; set; }
 
-    private NavMeshAgent _navMeshAgent;
+        public Vector3 Destination { get; set; }
 
-    public bool MovingToDestination { get; set; }
+        public NavMeshAgent NavMeshAgent { get; private set; }
 
-    public Vector3 Destination { get; set; }
+        private bool _move;
+        private Vector3 _dest;
 
 
-    // Use this for initialization
-    void Start ()
-	{
-	    MovingToDestination = false;
-	    Destination = Vector3.negativeInfinity;
-	    _navMeshAgent = GetComponent<NavMeshAgent>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if (Destination != Vector3.negativeInfinity && !MovingToDestination)
-	    {
-	        MovingToDestination = true;
-	        _navMeshAgent.destination = Destination;
-	    }
-	}
+        // Use this for initialization
+        void Start ()
+        {
+            MovingToDestination = false;
+            Destination = Vector3.negativeInfinity;
+            NavMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+        public void MoveTo(Vector3 destVector3)
+        {
+            _dest = destVector3;
+            _move = true;
+            GetComponent<NavMeshAgent>().destination = destVector3;
+        }
+
+        void Update() {
+        }
+    }
 }
