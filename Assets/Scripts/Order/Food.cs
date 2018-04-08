@@ -5,6 +5,12 @@ using UnityEngine;
 public class Food : MonoBehaviour {
 
     public enum FoodName {Hamburger,Salad};
+    private FoodName name;
+
+    public Food(FoodName food)
+    {
+        name = food;
+    }
 
 	// Use this for initialization
 	void Start () {
