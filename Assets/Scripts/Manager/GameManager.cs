@@ -6,15 +6,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private List<GameObject> _spawnTableGameObjects;
-    private AssetsManager _assetsManager;
 
     private const int SpawnTimer = 100;
     private int _currentSpawnTimer = 0;
 
-	// Use this for initialization
-	void Start ()
+    public static AssetsManager AssetsManager { get; private set; }
+
+    // Use this for initialization
+    void Start ()
 	{
-	    _assetsManager = GetComponent<AssetsManager>();
+	    AssetsManager = GetComponent<AssetsManager>();
 	    _spawnTableGameObjects = GameObject.FindGameObjectsWithTag("SpawnTable").ToList();
     }
 	
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
 	    else
 	    {
 	        _currentSpawnTimer = 0;
-            SpawnInteractive(_assetsManager.Interactives[Mathf.CeilToInt(Random.Range(0, _assetsManager.Interactives.Length))]);
+            SpawnInteractive(AssetsManager.Interactives[Mathf.CeilToInt(Random.Range(0, AssetsManager.Interactives.Length))]);
 	    }
 	}
 
@@ -54,4 +55,6 @@ public class GameManager : MonoBehaviour
             childObject.transform.rotation = Quaternion.identity;
         }
     }
+
+
 }

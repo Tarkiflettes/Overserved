@@ -125,6 +125,7 @@ MonoBehaviour:
   DashTime: 5
   AnimationTolerance: 0.05
   IsMoving: 0
+  PlayerNumber: 0
 --- !u!114 &114928497278053942
 MonoBehaviour:
   m_ObjectHideFlags: 1

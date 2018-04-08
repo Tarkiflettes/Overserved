@@ -8,6 +8,7 @@ TagManager:
   - Table
   - SpawnTable
   - Trash
+  - Seat
   layers:
   - Default
   - TransparentFX
