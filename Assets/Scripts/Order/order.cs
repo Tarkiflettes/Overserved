@@ -7,17 +7,6 @@ public class Order {
     List<Food> orderedFood = new List<Food>();
     private int maxTime;
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     //Méthodes
     void addFoodWithName(Food.FoodName food) {
         Food newFood = new Food(food);

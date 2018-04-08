@@ -7,21 +7,10 @@ public class Food {
     public enum FoodName {Hamburger,Salad};
     private FoodName name;
 
-
     public Food(FoodName food)
     {
         name = food;
     }
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public string getFoodName()
     {
