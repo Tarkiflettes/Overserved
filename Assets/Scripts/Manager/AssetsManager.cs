@@ -5,6 +5,8 @@ using UnityEngine;
 public class AssetsManager : MonoBehaviour
 {
     public GameObject[] Interactives;
+    public GameObject[] Clients;
+    public GameObject ClientSpawner;
     public List<Table> Tables;
     
     void Start() {
