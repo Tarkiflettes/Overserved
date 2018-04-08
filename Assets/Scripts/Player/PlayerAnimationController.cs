@@ -6,14 +6,14 @@ namespace Assets.Scripts.Player
     {
 
         private PlayerController _playerController;
-        private PlayerRaycaster _playerRaycaster;
+        private PlayerInteraction _playerInteraction;
         private Animator _animator;
         private ParticleSystem _particleSystem;
 
         void Start()
         {
             _playerController = GetComponent<PlayerController>();
-            _playerRaycaster = GetComponent<PlayerRaycaster>();
+            _playerInteraction = GetComponent<PlayerInteraction>();
             _animator = GetComponentInChildren<Animator>();
             _particleSystem = GetComponent<ParticleSystem>();
         }
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Player
             emission.enabled = _playerController.IsMoving;
 
             _animator.SetBool("Moving", _playerController.IsMoving);
-            _animator.SetBool("HasObject", _playerRaycaster.HasObject);
+            _animator.SetBool("HasObject", _playerInteraction.HasObject);
         }
     }
 }

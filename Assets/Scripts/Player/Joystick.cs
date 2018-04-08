@@ -7,6 +7,7 @@
         public readonly string Vertical;
         public readonly string Dash;
         public readonly string Action;
+        public readonly string Use;
 
         public Joystick(int playerNumber)
         {
@@ -14,6 +15,7 @@
             Vertical = "Vertical_P" + playerNumber;
             Dash = "Dash_P" + playerNumber;
             Action = "Action_P" + playerNumber;
+            Use = "Use_P" + playerNumber;
         }
     }
 }

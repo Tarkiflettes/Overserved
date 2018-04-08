@@ -2,23 +2,23 @@
 
 namespace Assets.Scripts.Interactive
 {
-    public class Catchable : Interactive
+    public class Usable : Interactive
     {
 
         void OnGUI()
         {
+
             base.InitGui();
         }
 
-        private void Update()
+        void Update()
         {
 
         }
 
         public override void Interact()
         {
-            Debug.Log("Interact Catchable : " + name);
+            Debug.Log("Interact Usable : " + name);
         }
-
     }
 }
