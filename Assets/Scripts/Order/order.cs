@@ -26,7 +26,8 @@ public class Order : MonoBehaviour {
 
     //Méthodes
     void addFoodWithName(Food.FoodName food) {
-        orderedFood.Add(food);
+        Food newFood = new Food(food);
+        orderedFood.Add(newFood);
     }
 
     public void generateRandomFood(int nbr)
@@ -39,6 +40,17 @@ public class Order : MonoBehaviour {
             addFoodWithName(choice);
         }
     }
+
+    //toString
+    /*string toString()
+    {
+        string aff = "";
+        foreach (var food in orderedFood)
+        {
+            aff += 
+        }
+        return "";
+    }*/
     
 }
 

@@ -21,4 +21,9 @@ public class Food : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    string getFoodName()
+    {
+        //return (string)name;
+    }
 }
