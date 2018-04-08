@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class doorController : MonoBehaviour {
+public class orderUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
-    }
+		
+	}
 	
 	// Update is called once per frame
 	void Update () {
-        
+		
 	}
-
-    void launchAnimation() {
-        GetComponent<Animation>().Play();
-    }
 }
