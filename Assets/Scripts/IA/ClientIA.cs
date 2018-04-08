@@ -14,9 +14,7 @@ namespace Assets.Scripts.IA
         private bool _move;
         private Vector3 _dest;
 
-
-        // Use this for initialization
-        void Start ()
+        void Start()
         {
             MovingToDestination = false;
             Destination = Vector3.negativeInfinity;
@@ -30,7 +28,8 @@ namespace Assets.Scripts.IA
             GetComponent<NavMeshAgent>().destination = destVector3;
         }
 
-        void Update() {
+        void Update()
+        {
         }
     }
 }

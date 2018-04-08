@@ -1,52 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class orderUI : MonoBehaviour {
-
-
-	// Use this for initialization
-	void Start () {
-
-        Order order = new Order();
-        order.generateRandomFood(5);
-        showOrder(order);
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void showOrder(Order order)
+namespace Assets.Scripts.UI
+{
+    public class OrderUi : MonoBehaviour
     {
-        //show order nbr
-        List<Food> foods = order.getOrderedFood();
-        foreach(var food in foods)
+
+        void Start()
         {
-            //AddTextToCanvas(food.getFoodName(), this.gameObject);
-            Debug.Log(food.getFoodName());
+            var order = new Order.Order();
+            order.GenerateRandomFood(5);
+            ShowOrder(order);
         }
+
+        static void ShowOrder(Order.Order order)
+        {
+            //show order nbr
+            var foods = order.GetOrderedFood();
+            foreach (var food in foods)
+            {
+                //AddTextToCanvas(food.getFoodName(), this.gameObject);
+                Debug.Log(food.GetFoodName());
+            }
+        }
+
+        public static Text AddTextToCanvas(string textString, GameObject canvasGameObject)
+        {
+            var text = canvasGameObject.AddComponent<Text>();
+            text.text = textString;
+
+            var arialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+            text.font = arialFont;
+            text.material = arialFont.material;
+
+            return text;
+        }
+
+        public void AddImageToCanvas()
+        {
+
+        }
+
+
     }
-
-    public static Text AddTextToCanvas(string textString, GameObject canvasGameObject)
-    {
-        Text text = canvasGameObject.AddComponent<Text>();
-        text.text = textString;
-
-        Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        text.font = ArialFont;
-        text.material = ArialFont.material;
-
-        return text;
-    }
-
-    public void addImageToCanvas()
-    {
-
-    }
-
-
 }

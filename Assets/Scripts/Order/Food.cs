@@ -1,24 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Food {
-
-    public enum FoodName {Hamburger,Salad};
-    private FoodName name;
-
-    public Food(FoodName food)
+﻿namespace Assets.Scripts.Order
+{
+    public class Food
     {
-        name = food;
-    }
 
-    public string getFoodName()
-    {
-        switch (name)
+        public enum FoodName { Hamburger, Salad };
+        private readonly FoodName _name;
+
+        public Food(FoodName food)
         {
-            case FoodName.Hamburger: return "Hamburger"; break;
-            case FoodName.Salad: return "Salad"; break;
-            default: return ""; break;
+            _name = food;
+        }
+
+        public string GetFoodName()
+        {
+            switch (_name)
+            {
+                case FoodName.Hamburger: return "Hamburger";
+                case FoodName.Salad: return "Salad";
+                default: return "";
+            }
         }
     }
 }

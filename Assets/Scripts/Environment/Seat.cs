@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Seat
+namespace Assets.Scripts.Environment
 {
-    public bool IsUsed { get; set; }
-
-    public GameObject SeatGameObject { get; private set; }
-
-    public Seat(GameObject seatGameObject)
+    public class Seat
     {
-        IsUsed = false;
-        SeatGameObject = seatGameObject;
-    }
+        public bool IsUsed;
 
+        public GameObject SeatGameObject { get; private set; }
+
+        public Seat(GameObject seatGameObject)
+        {
+            IsUsed = false;
+            SeatGameObject = seatGameObject;
+        }
+
+    }
 }

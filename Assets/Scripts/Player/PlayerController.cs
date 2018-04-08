@@ -30,7 +30,6 @@ namespace Assets.Scripts.Player
             _defaultPositionY = transform.position.y + _characterController.skinWidth;
         }
 
-
         private void FixedUpdate()
         {
             var axisHorizontal = Input.GetAxis(Joystick.Horizontal);

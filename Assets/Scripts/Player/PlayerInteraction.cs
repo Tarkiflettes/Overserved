@@ -94,7 +94,6 @@ namespace Assets.Scripts.Player
             _takenObject.GetComponent<Catchable>().EnableUi(false);
         }
 
-
         private void Drop()
         {
             if (ColliderTableGameObject != null)
