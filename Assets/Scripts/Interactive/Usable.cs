@@ -5,20 +5,19 @@ namespace Assets.Scripts.Interactive
     public class Usable : Interactive
     {
 
-        void OnGUI()
+        void Start()
         {
-
-            base.InitGui();
-        }
-
-        void Update()
-        {
-
+            SetUI();
         }
 
         public override void Interact()
         {
             Debug.Log("Interact Usable : " + name);
         }
+
+        public override void Interact(GameObject obj)
+        {
+        }
+
     }
 }

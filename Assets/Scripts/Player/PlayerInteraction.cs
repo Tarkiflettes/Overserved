@@ -11,25 +11,19 @@ namespace Assets.Scripts.Player
         }
 
         [HideInInspector]
-        public GameObject ColliderGameObject;
+        public GameObject ColliderCatchable;
         [HideInInspector]
-        public GameObject ColliderTableGameObject;
-        [HideInInspector]
-        public GameObject ColliderTrashGameObject;
+        public GameObject ColliderUsable;
 
         private GameObject _takenObject;
-        private GameObject _interactive;
         private Joystick _joystick;
         private PlayerController _playerController;
 
-
         void Start()
         {
-            ColliderGameObject = null;
-            ColliderTableGameObject = null;
-            ColliderTrashGameObject = null;
+            ColliderCatchable = null;
+            ColliderUsable = null;
             _takenObject = null;
-            _interactive = GameObject.Find("/Interactive");
         }
 
         void FixedUpdate()
@@ -40,14 +34,14 @@ namespace Assets.Scripts.Player
                 _joystick = _playerController.Joystick;
                 return;
             }
+
             if (Input.GetButtonDown(_joystick.Action))
             {
-                if (ColliderGameObject != null &&
-                    ColliderGameObject.tag == "Catchable" &&
+                if (ColliderCatchable != null &&
                     HasObject == false)
                 {
                     Debug.Log("Catch");
-                    Catch(ColliderGameObject);
+                    Catch(ColliderCatchable);
                 }
                 else if (HasObject)
                 {
@@ -58,23 +52,16 @@ namespace Assets.Scripts.Player
 
             if (Input.GetButtonDown(_joystick.Use))
             {
-                if (ColliderGameObject != null &&
-                    ColliderGameObject.tag == "Usable" &&
+                if (ColliderUsable != null &&
                     HasObject == false)
                 {
-                    Interact(ColliderGameObject);
+                    Interact(ColliderUsable);
                 }
-                else if (HasObject &&
-                        _takenObject.tag == "Catchable")
+                else if (HasObject)
                 {
                     Interact(_takenObject);
                 }
             }
-        }
-
-        public void Hit(GameObject colliderGameObject)
-        {
-            ColliderGameObject = colliderGameObject;
         }
 
         private void Interact(GameObject obj)
@@ -83,53 +70,25 @@ namespace Assets.Scripts.Player
             usable.Interact();
         }
 
+        private void Interact(GameObject obj, GameObject obj2)
+        {
+            var usable = obj.GetComponent<Interactive.Interactive>();
+            usable.Interact(obj2);
+        }
+
         private void Catch(GameObject obj)
         {
-            obj.transform.parent = transform;
-            obj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            var position = transform.forward + transform.position;
-            obj.transform.rotation = new Quaternion();
-            obj.transform.position = position;
-            _takenObject = obj;
-            _takenObject.GetComponent<Catchable>().EnableUi(false);
+            _takenObject = obj.GetComponent<Catchable>().Catch(transform);
         }
 
         private void Drop()
         {
-            if (ColliderTableGameObject != null)
-            {
-                var objectOnTable = false;
-                foreach (var tableChild in ColliderTableGameObject.transform.GetComponentsInChildren<Transform>())
-                {
-                    if (tableChild.tag.Equals("Catchable"))
-                    {
-                        objectOnTable = true;
-                        break;
-                    }
-                }
+            _takenObject.GetComponent<Catchable>().Drop(transform);
+            var tmpObj = _takenObject;
+            _takenObject = null;
 
-                if (!objectOnTable)
-                {
-                    var tableCollider = ColliderTableGameObject.GetComponent<BoxCollider>();
-                    _takenObject.transform.parent = ColliderTableGameObject.transform;
-                    _takenObject.transform.localPosition = new Vector3(tableCollider.center.x, tableCollider.size.y + (1 - tableCollider.center.y) * 2 - _takenObject.GetComponent<BoxCollider>().center.y, tableCollider.center.z);
-                    _takenObject.transform.rotation = Quaternion.identity;
-                    _takenObject.GetComponent<Catchable>().EnableUi(true);
-                    _takenObject = null;
-                }
-            }
-            else if (ColliderTrashGameObject != null)
-            {
-                Destroy(_takenObject);
-                _takenObject = null;
-            }
-            else
-            {
-                _takenObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                _takenObject.transform.parent = _interactive.transform;
-                _takenObject.GetComponent<Catchable>().EnableUi(true);
-                _takenObject = null;
-            }
+            if (ColliderUsable != null)
+                Interact(ColliderUsable, tmpObj);
         }
 
     }

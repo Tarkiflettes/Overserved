@@ -128,7 +128,7 @@ namespace Assets.Scripts.Manager
 
         List<GameObject> PickClientFamily()
         {
-            int familySize = Random.Range(1, _maxFamilySize);
+            var familySize = Random.Range(1, _maxFamilySize);
             var family = new List<GameObject>();
             for (var i = 0; i < familySize; i++)
             {

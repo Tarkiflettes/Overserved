@@ -31,23 +31,22 @@ namespace Assets.Scripts.Player
                 var gamesObjects = hits.Select(x => x.collider.gameObject);
                 var colliderGameObjects = gamesObjects as IList<GameObject> ?? gamesObjects.ToList();
 
-                var closestGameObject = ClosestGameObject(colliderGameObjects, new[] { "Catchable", "Usable" });
-                _playerInteraction.ColliderGameObject = closestGameObject;
+                var closestGameObject = ClosestGameObject(colliderGameObjects, "Catchable");
+                _playerInteraction.ColliderCatchable = closestGameObject;
 
-                var colliderTableGameObject = ClosestGameObject(colliderGameObjects, new[] { "Table" });
-                _playerInteraction.ColliderTableGameObject = colliderTableGameObject;
-
-                var colliderTrashGameObject = ClosestGameObject(colliderGameObjects, new[] { "Trash" });
-                _playerInteraction.ColliderTrashGameObject = colliderTrashGameObject;
+                var colliderTableGameObject = ClosestGameObject(colliderGameObjects, "Usable");
+                _playerInteraction.ColliderUsable = colliderTableGameObject;
+                
             }
             else
             {
-                _playerInteraction.Hit(null);
+                _playerInteraction.ColliderCatchable = null;
+                _playerInteraction.ColliderUsable = null;
             }
 
         }
 
-        private GameObject ClosestGameObject(IEnumerable<GameObject> colliderGameObjects, string[] objectTag)
+        private GameObject ClosestGameObject(IEnumerable<GameObject> colliderGameObjects, string objectTag)
         {
             var minDist = float.MaxValue;
             GameObject closestTableGameObject = null;
@@ -65,7 +64,6 @@ namespace Assets.Scripts.Player
                 }
             }
             return closestTableGameObject;
-
         }
 
     }

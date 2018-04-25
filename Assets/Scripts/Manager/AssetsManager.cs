@@ -7,6 +7,7 @@ namespace Assets.Scripts.Manager
     public class AssetsManager : MonoBehaviour
     {
         public GameObject[] Interactives;
+        public GameObject InteractivesUI;
         public GameObject[] Clients;
         public GameObject ClientSpawner;
         public List<Table> Tables;
