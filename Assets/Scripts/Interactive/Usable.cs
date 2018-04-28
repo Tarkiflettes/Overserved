@@ -5,7 +5,7 @@ namespace Assets.Scripts.Interactive
     public class Usable : Interactive
     {
 
-        void Start()
+        private void Start()
         {
             SetUI();
         }

@@ -5,8 +5,8 @@ namespace Assets.Scripts.Interactive
     public class Catchable : Interactive
     {
         private GameObject _interactive;
-        
-        void Start()
+
+        private void Start()
         {
             SetUI();
             _interactive = GameObject.Find("/Interactive");

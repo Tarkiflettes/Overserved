@@ -19,14 +19,14 @@ namespace Assets.Scripts.Player
         private Joystick _joystick;
         private PlayerController _playerController;
 
-        void Start()
+        private void Start()
         {
             ColliderCatchable = null;
             ColliderUsable = null;
             _takenObject = null;
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (_joystick == null)
             {

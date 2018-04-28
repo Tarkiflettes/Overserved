@@ -5,6 +5,7 @@ namespace Assets.Scripts.IA
 {
     public class ClientIA : MonoBehaviour
     {
+
         public bool MovingToDestination { get; set; }
 
         public Vector3 Destination { get; set; }
@@ -14,11 +15,15 @@ namespace Assets.Scripts.IA
         private bool _move;
         private Vector3 _dest;
 
-        void Start()
+        private void Start()
         {
             MovingToDestination = false;
             Destination = Vector3.negativeInfinity;
             NavMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+        private void Update()
+        {
         }
 
         public void MoveTo(Vector3 destVector3)
@@ -28,8 +33,5 @@ namespace Assets.Scripts.IA
             GetComponent<NavMeshAgent>().destination = destVector3;
         }
 
-        void Update()
-        {
-        }
     }
 }

@@ -10,6 +10,7 @@ namespace Assets.Scripts.Manager
 {
     public class GameManager : MonoBehaviour
     {
+
         public static AssetsManager AssetsManager;
 
         private int _maxFamilySize = 1;
@@ -23,7 +24,7 @@ namespace Assets.Scripts.Manager
         private int _currentClientSpawnTimer = 0;
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             RandommizeClientSpawnTimer();
             AssetsManager = GetComponent<AssetsManager>();
@@ -31,7 +32,7 @@ namespace Assets.Scripts.Manager
         }
 
         // Update is called once per frame
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             // ********** FOOD SPAWN
             if (_currentFoodSpawnTimer < FoodSpawnTimer)
@@ -57,7 +58,7 @@ namespace Assets.Scripts.Manager
             }
         }
 
-        void SpawnInteractive(GameObject interactiveGameObjectameObject)
+        private void SpawnInteractive(GameObject interactiveGameObjectameObject)
         {
             _spawnTableGameObjects.Shuffle();
             var i = 0;
@@ -81,7 +82,7 @@ namespace Assets.Scripts.Manager
             }
         }
 
-        Table PickTable()
+        private Table PickTable()
         {
             AssetsManager.Tables.Shuffle();
             var i = 0;
@@ -97,7 +98,7 @@ namespace Assets.Scripts.Manager
             return table;
         }
 
-        void SpawnClients(List<GameObject> gameObjects)
+        private void SpawnClients(List<GameObject> gameObjects)
         {
 
             var table = PickTable();
@@ -121,7 +122,7 @@ namespace Assets.Scripts.Manager
             }
         }
 
-        void RandommizeClientSpawnTimer()
+        private void RandommizeClientSpawnTimer()
         {
             _clientSpawnTimer = Random.Range(MinClientSpawn, MaxClientSpawn);
         }
@@ -137,5 +138,6 @@ namespace Assets.Scripts.Manager
 
             return family;
         }
+
     }
 }

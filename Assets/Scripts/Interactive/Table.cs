@@ -10,7 +10,7 @@ namespace Assets.Scripts.Interactive
         private bool _objectOnTable;
         private GameObject[] _objectsOnTable;
 
-        void Start()
+        private void Start()
         {
             SetUI();
             _objectsOnTable = new GameObject[NumberOfSeat];

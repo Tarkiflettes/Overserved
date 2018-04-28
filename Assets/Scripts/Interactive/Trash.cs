@@ -5,7 +5,7 @@ namespace Assets.Scripts.Interactive
     public class Trash : Usable
     {
 
-        void Start()
+        private void Start()
         {
             SetUI();
         }

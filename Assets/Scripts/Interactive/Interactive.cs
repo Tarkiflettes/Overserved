@@ -8,9 +8,9 @@ namespace Assets.Scripts.Interactive
     {
         public Sprite Image;
 
-        private InteractiveUI _interactiveUI;
+        private Icon _iconUI;
 
-        void Start()
+        private void Start()
         {
             SetUI();
         }
@@ -20,10 +20,10 @@ namespace Assets.Scripts.Interactive
             if (Image == null)
                 return;
             var Ui = Instantiate(GameManager.AssetsManager.InteractivesUI);
-            _interactiveUI = Ui.GetComponentInChildren<InteractiveUI>();
-            _interactiveUI.transform.SetParent(transform, false);
-            if (_interactiveUI != null)
-                _interactiveUI.SetImage(Image);
+            _iconUI = Ui.GetComponentInChildren<Icon>();
+            _iconUI.transform.SetParent(transform, false);
+            if (_iconUI != null)
+                _iconUI.SetImage(Image);
         }
 
         public abstract void Interact();
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Interactive
 
         public void EnableUi(bool state)
         {
-            _interactiveUI.Enable(state);
+            _iconUI.Enable(state);
         }
     }
 }

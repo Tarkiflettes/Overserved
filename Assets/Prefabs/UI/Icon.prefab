@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 223501397855528888}
   - component: {fileID: 114678191853567328}
   - component: {fileID: 114337667556691654}
-  - component: {fileID: 114060460322088604}
+  - component: {fileID: 114732230478913148}
   m_Layer: 0
-  m_Name: InteractiveUI
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 222449024270007830}
   - component: {fileID: 114053320996155592}
   m_Layer: 0
-  m_Name: Icon
+  m_Name: IconImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,18 +91,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114060460322088604
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1062015251167758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa0162dd00def14fb0e9f9efc7eb6ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Inclinaison: 0
 --- !u!114 &114337667556691654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,6 +155,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114732230478913148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1062015251167758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d18c0a57f649946bf512d1b0d06946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 114053320996155592}
 --- !u!222 &222449024270007830
 CanvasRenderer:
   m_ObjectHideFlags: 1

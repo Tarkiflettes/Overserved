@@ -5,6 +5,7 @@ namespace Assets.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+
         private const float RotationSpeed = 20f;
 
         public float Speed;
@@ -61,5 +62,6 @@ namespace Assets.Scripts.Player
 
             _characterController.Move(moveDirection * Time.deltaTime * speed);
         }
+
     }
 }

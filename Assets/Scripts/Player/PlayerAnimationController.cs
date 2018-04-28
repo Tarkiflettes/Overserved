@@ -10,7 +10,7 @@ namespace Assets.Scripts.Player
         private Animator _animator;
         private ParticleSystem _particleSystem;
 
-        void Start()
+        private void Start()
         {
             _playerController = GetComponent<PlayerController>();
             _playerInteraction = GetComponent<PlayerInteraction>();
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Player
             _particleSystem = GetComponent<ParticleSystem>();
         }
 
-        void Update()
+        private void Update()
         {
             var emission = _particleSystem.emission;
             emission.enabled = _playerController.IsMoving;
@@ -26,5 +26,6 @@ namespace Assets.Scripts.Player
             _animator.SetBool("Moving", _playerController.IsMoving);
             _animator.SetBool("HasObject", _playerInteraction.HasObject);
         }
+
     }
 }
