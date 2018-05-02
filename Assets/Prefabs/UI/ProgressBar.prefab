@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 223501397855528888}
   - component: {fileID: 114678191853567328}
   - component: {fileID: 114337667556691654}
-  - component: {fileID: 114060460322088604}
+  - component: {fileID: 114153894143624380}
   m_Layer: 0
   m_Name: ProgressBar
   m_TagString: Untagged
@@ -126,7 +126,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Scrollbar+ScrollEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114060460322088604
+--- !u!114 &114153894143624380
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -134,10 +134,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1062015251167758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa0162dd00def14fb0e9f9efc7eb6ec, type: 3}
+  m_Script: {fileID: 11500000, guid: c72330e2930638b4cbdddff1a49aa60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inclinaison: 0
+  ScrollBarUI: {fileID: 114049066916413316}
 --- !u!114 &114337667556691654
 MonoBehaviour:
   m_ObjectHideFlags: 1
