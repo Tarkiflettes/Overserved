@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 2d1f29bac34ff6841a9abb4f01086dd2
-timeCreated: 1524694009
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -13,6 +11,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Cube
+    4300002: Trash
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -34,6 +33,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5

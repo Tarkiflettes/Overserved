@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Interactive
 {
@@ -12,14 +13,19 @@ namespace Assets.Scripts.Interactive
             _interactive = GameObject.Find("/Interactive");
         }
 
-        public GameObject Catch(Transform catcher)
+        public GameObject Catch(GameObject catcher, Vector3 position, Quaternion rotation)
         {
+            // Set parent
             transform.parent = catcher.transform;
+            // set constraints
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            var position = catcher.transform.forward + catcher.transform.position;
-            transform.rotation = new Quaternion();
-            transform.position = position;
+            // set rotation
+            transform.localRotation = rotation;
+            // set position
+            transform.localPosition = position;
+            // set ui
             GetComponent<Catchable>().EnableUi(false);
+
             return gameObject;
         }
 

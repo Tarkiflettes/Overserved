@@ -17,6 +17,7 @@ namespace Assets.Scripts.Interactive
 
         public override void Interact(GameObject obj)
         {
+            Debug.Log("Interact Usable : " + name + " with " + obj.name);
         }
 
     }

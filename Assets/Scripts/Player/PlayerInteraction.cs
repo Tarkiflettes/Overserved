@@ -10,6 +10,8 @@ namespace Assets.Scripts.Player
             get { return _takenObject != null; }
         }
 
+        public GameObject ObjectPosition;
+
         [HideInInspector]
         public GameObject ColliderCatchable;
         [HideInInspector]
@@ -41,7 +43,9 @@ namespace Assets.Scripts.Player
                     HasObject == false)
                 {
                     Debug.Log("Catch");
-                    Catch(ColliderCatchable);
+                    var catchable = ColliderCatchable.GetComponent<Catchable>();
+                    if (catchable != null)
+                        Catch(catchable);
                 }
                 else if (HasObject)
                 {
@@ -76,9 +80,20 @@ namespace Assets.Scripts.Player
             usable.Interact(obj2);
         }
 
-        private void Catch(GameObject obj)
+        private void Catch(Catchable catchable)
         {
-            _takenObject = obj.GetComponent<Catchable>().Catch(transform);
+            var newPosition = new Vector3();
+            var catchableCollider = catchable.GetComponent<BoxCollider>();
+            if (catchableCollider != null)
+            {
+                newPosition.y = catchableCollider.size.y / 2;
+                newPosition.z = catchableCollider.size.z / 2;
+            }
+
+            _takenObject = catchable.GetComponent<Catchable>().Catch(
+                ObjectPosition,
+                newPosition,
+                new Quaternion());
         }
 
         private void Drop()

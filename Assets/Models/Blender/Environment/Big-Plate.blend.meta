@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: c6674449a713b874e8744a65f782a059
-timeCreated: 1524613951
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -10,25 +8,40 @@ ModelImporter:
     100004: Cube_001
     100006: Cylinder
     100008: Sphere
+    100010: Bottom-Plate
+    100012: Support
+    100014: Top-Plate
     400000: //RootNode
     400002: Cube_000
     400004: Cube_001
     400006: Cylinder
     400008: Sphere
+    400010: Bottom-Plate
+    400012: Support
+    400014: Top-Plate
     2100000: Material_002
     2100002: Material_001
     2300000: Cube_000
     2300002: Cube_001
     2300004: Cylinder
     2300006: Sphere
+    2300008: Bottom-Plate
+    2300010: Support
+    2300012: Top-Plate
     3300000: Cube_000
     3300002: Cube_001
     3300004: Cylinder
     3300006: Sphere
+    3300008: Bottom-Plate
+    3300010: Support
+    3300012: Top-Plate
     4300000: Sphere
     4300002: Cube_000
     4300004: Cylinder
     4300006: Cube_001
+    4300008: Top-Plate
+    4300010: Support
+    4300012: Bottom-Plate
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -50,6 +63,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5

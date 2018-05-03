@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 595c60453bf7a164b8c7d0de13b53abe
-timeCreated: 1524606506
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -9,10 +7,16 @@ ModelImporter:
     100002: Cone_001
     100004: Cylinder
     100006: Torus
+    100008: Clip
+    100010: Hair
+    100012: Handle
     400000: //RootNode
     400002: Cone_001
     400004: Cylinder
     400006: Torus
+    400008: Clip
+    400010: Hair
+    400012: Handle
     2100000: Material_003
     2100002: Material_002
     2100004: Material_001
@@ -20,13 +24,22 @@ ModelImporter:
     2300002: Cone_001
     2300004: Cylinder
     2300006: Torus
+    2300008: Clip
+    2300010: Hair
+    2300012: Handle
     3300000: //RootNode
     3300002: Cone_001
     3300004: Cylinder
     3300006: Torus
+    3300008: Clip
+    3300010: Hair
+    3300012: Handle
     4300000: Torus
     4300002: Cone_001
     4300004: Cylinder
+    4300006: Clip
+    4300008: Hair
+    4300010: Handle
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -48,6 +61,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5

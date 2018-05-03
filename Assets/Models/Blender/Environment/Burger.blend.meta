@@ -13,6 +13,15 @@ ModelImporter:
     100014: Cylinder_004
     100016: Cylinder_005
     100018: Sphere
+    100020: Bread
+    100022: Cheese
+    100024: Steak
+    100026: Tomato-1
+    100028: Tomato-2
+    100030: Tomato-3
+    100032: Top-Bread
+    100034: Top-Cheese
+    100036: Top-Steak
     400000: //RootNode
     400002: Cube_000
     400004: Cube_001
@@ -23,6 +32,15 @@ ModelImporter:
     400014: Cylinder_004
     400016: Cylinder_005
     400018: Sphere
+    400020: Bread
+    400022: Cheese
+    400024: Steak
+    400026: Tomato-1
+    400028: Tomato-2
+    400030: Tomato-3
+    400032: Top-Bread
+    400034: Top-Cheese
+    400036: Top-Steak
     2100000: Bread
     2100002: Meat
     2100004: Cheese
@@ -37,6 +55,15 @@ ModelImporter:
     2300012: Cylinder_004
     2300014: Cylinder_005
     2300016: Sphere
+    2300018: Bread
+    2300020: Cheese
+    2300022: Steak
+    2300024: Tomato-1
+    2300026: Tomato-2
+    2300028: Tomato-3
+    2300030: Top-Bread
+    2300032: Top-Cheese
+    2300034: Top-Steak
     3300000: Cube_000
     3300002: Cube_001
     3300004: Cylinder
@@ -46,6 +73,15 @@ ModelImporter:
     3300012: Cylinder_004
     3300014: Cylinder_005
     3300016: Sphere
+    3300018: Bread
+    3300020: Cheese
+    3300022: Steak
+    3300024: Tomato-1
+    3300026: Tomato-2
+    3300028: Tomato-3
+    3300030: Top-Bread
+    3300032: Top-Cheese
+    3300034: Top-Steak
     4300000: Sphere
     4300002: Cylinder
     4300004: Cylinder_001
@@ -55,6 +91,15 @@ ModelImporter:
     4300012: Cylinder_004
     4300014: Cylinder_005
     4300016: Cube_000
+    4300018: Top-Bread
+    4300020: Steak
+    4300022: Bread
+    4300024: Top-Steak
+    4300026: Top-Cheese
+    4300028: Tomato-3
+    4300030: Tomato-2
+    4300032: Tomato-1
+    4300034: Cheese
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs

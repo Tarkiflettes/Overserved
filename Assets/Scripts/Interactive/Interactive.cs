@@ -29,9 +29,11 @@ namespace Assets.Scripts.Interactive
         public abstract void Interact();
         public abstract void Interact(GameObject obj);
 
-        public void EnableUi(bool state)
-        {
+        public void EnableUi(bool state) {
+            if (_iconUI == null)
+                    return;
             _iconUI.Enable(state);
         }
+
     }
 }

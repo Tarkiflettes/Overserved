@@ -1,19 +1,37 @@
 fileFormatVersion: 2
 guid: a33f6fa760f70a34e82955422ececc11
-timeCreated: 1524525108
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Drawer
+    100004: Furniture
+    100006: Handle
+    100008: WorkTop
     400000: //RootNode
+    400002: Drawer
+    400004: Furniture
+    400006: Handle
+    400008: WorkTop
     2100000: Material_003
     2100002: Material_001
     2100004: Material_002
     2100006: Material
     2300000: //RootNode
+    2300002: Drawer
+    2300004: Furniture
+    2300006: Handle
+    2300008: WorkTop
     3300000: //RootNode
+    3300002: Drawer
+    3300004: Furniture
+    3300006: Handle
+    3300008: WorkTop
     4300000: Sphere
+    4300002: Handle
+    4300004: WorkTop
+    4300006: Drawer
+    4300008: Furniture
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -35,6 +53,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
