@@ -5,11 +5,6 @@ namespace Assets.Scripts.Interactive
     public class Trash : Usable
     {
 
-        private void Start()
-        {
-            SetUI();
-        }
-
         public override void Interact()
         {
         }

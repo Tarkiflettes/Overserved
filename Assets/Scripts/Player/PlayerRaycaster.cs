@@ -36,7 +36,6 @@ namespace Assets.Scripts.Player
 
                 var colliderTableGameObject = ClosestGameObject(colliderGameObjects, "Usable");
                 _playerInteraction.ColliderUsable = colliderTableGameObject;
-                
             }
             else
             {

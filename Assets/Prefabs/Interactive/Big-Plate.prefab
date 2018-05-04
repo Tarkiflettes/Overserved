@@ -71,8 +71,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4111704423598694}
   - component: {fileID: 65229143294742096}
-  - component: {fileID: 114320745485645568}
   - component: {fileID: 54935649588282952}
+  - component: {fileID: 114659174452077490}
   m_Layer: 0
   m_Name: Big-Plate
   m_TagString: Catchable
@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1335957170947492}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.31, y: 0.285, z: 0.025642872}
+  m_LocalPosition: {x: 2.3582628, y: 1.195, z: 7.1864734}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4266933915027510}
@@ -162,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1395598152836074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.52, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4876408913713514}
@@ -419,7 +419,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.52, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95363454322920394
 Animator:
   serializedVersion: 3
@@ -438,7 +438,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114320745485645568
+--- !u!114 &114659174452077490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -446,7 +446,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1335957170947492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73868446d65c152438fe0333c4c44385, type: 3}
+  m_Script: {fileID: 11500000, guid: 60c2d6db908c54d4f97f97ad775d3d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 0}
+  CanBeTaken: 1

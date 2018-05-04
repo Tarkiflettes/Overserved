@@ -6,11 +6,20 @@ namespace Assets.Scripts.Interactive
 {
     public abstract class Interactive : MonoBehaviour
     {
+
         public Sprite Image;
+
+        [HideInInspector]
+        public bool IsInteracting = false;
 
         private Icon _iconUI;
 
         private void Start()
+        {
+            Init();
+        }
+
+        protected virtual void Init()
         {
             SetUI();
         }

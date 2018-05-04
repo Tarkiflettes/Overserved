@@ -42,14 +42,14 @@ namespace Assets.Scripts.Player
                 if (ColliderCatchable != null &&
                     HasObject == false)
                 {
-                    Debug.Log("Catch");
+                    Debug.Log("Catch " + ColliderCatchable);
                     var catchable = ColliderCatchable.GetComponent<Catchable>();
                     if (catchable != null)
                         Catch(catchable);
                 }
                 else if (HasObject)
                 {
-                    Debug.Log("Drop");
+                    Debug.Log("Drop " + _takenObject);
                     Drop();
                 }
             }
@@ -66,17 +66,44 @@ namespace Assets.Scripts.Player
                     Interact(_takenObject);
                 }
             }
+
+            if (Input.GetButtonUp(_joystick.Use))
+            {
+                if (ColliderUsable != null &&
+                    HasObject == false)
+                {
+                    FinishInteraction(ColliderUsable);
+                }
+                else if (HasObject)
+                {
+                    FinishInteraction(_takenObject);
+                }
+            }
         }
 
         private void Interact(GameObject obj)
         {
             var usable = obj.GetComponent<Interactive.Interactive>();
+            if (usable == null)
+                return;
             usable.Interact();
+            usable.IsInteracting = true;
+        }
+
+        private void FinishInteraction(GameObject obj)
+        {
+            Debug.Log("Finish Interact");
+            var usable = obj.GetComponent<Interactive.Interactive>();
+            if (usable == null)
+                return;
+            usable.IsInteracting = false;
         }
 
         private void Interact(GameObject obj, GameObject obj2)
         {
             var usable = obj.GetComponent<Interactive.Interactive>();
+            if (usable == null)
+                return;
             usable.Interact(obj2);
         }
 

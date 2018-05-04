@@ -5,16 +5,21 @@ namespace Assets.Scripts.Interactive
 {
     public class Catchable : Interactive
     {
+        public bool CanBeCaught = true;
+
         private GameObject _interactive;
 
-        private void Start()
+        protected override void Init()
         {
-            SetUI();
+            base.Init();
             _interactive = GameObject.Find("/Interactive");
         }
 
         public GameObject Catch(GameObject catcher, Vector3 position, Quaternion rotation)
         {
+            if (!CanBeCaught)
+                return null;
+
             // Set parent
             transform.parent = catcher.transform;
             // set constraints
@@ -31,8 +36,11 @@ namespace Assets.Scripts.Interactive
 
         public void Drop(Transform dropper)
         {
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            // Set parent
             transform.parent = _interactive.transform;
+            // set constraints
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            // set ui
             GetComponent<Catchable>().EnableUi(true);
         }
 
