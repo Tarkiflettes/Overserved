@@ -32,6 +32,9 @@ namespace Assets.Scripts.Interactive
 
         private void Serve(Plate plate)
         {
+            if (HasBigPlate)
+                return;
+
             var seatToServe = FindSeatWithoutPlate();
             if (seatToServe == null)
                 return;
@@ -66,7 +69,6 @@ namespace Assets.Scripts.Interactive
                 if (catchableCollider != null)
                     newPosition.y = catchableCollider.size.y / 2;
                 plate.Catch(FinishedPlatePosition, newPosition, new Quaternion());
-                Debug.Log("Change pos");
             }
         }
 

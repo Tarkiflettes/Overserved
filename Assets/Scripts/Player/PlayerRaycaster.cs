@@ -15,7 +15,7 @@ namespace Assets.Scripts.Player
             _playerInteraction = GetComponent<PlayerInteraction>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             var characterController = GetComponent<CharacterController>();
             var p1 = transform.position + characterController.center + Vector3.up * -characterController.height * 0.5F;
@@ -31,16 +31,23 @@ namespace Assets.Scripts.Player
                 var gamesObjects = hits.Select(x => x.collider.gameObject);
                 var colliderGameObjects = gamesObjects as IList<GameObject> ?? gamesObjects.ToList();
 
-                var closestGameObject = ClosestGameObject(colliderGameObjects, "Catchable");
-                _playerInteraction.ColliderCatchable = closestGameObject;
+                var closestCatchable = ClosestGameObject(colliderGameObjects, "Catchable");
+                if ((closestCatchable != null && !closestCatchable.Equals(_playerInteraction.ColliderCatchable)) ||
+                    (closestCatchable == null && _playerInteraction.ColliderCatchable != null))
+                    _playerInteraction.ColliderCatchable = closestCatchable;
 
-                var colliderTableGameObject = ClosestGameObject(colliderGameObjects, "Usable");
-                _playerInteraction.ColliderUsable = colliderTableGameObject;
+                var closestUsable = ClosestGameObject(colliderGameObjects, "Usable");
+                if ((closestUsable != null && !closestUsable.Equals(_playerInteraction.ColliderUsable)) ||
+                    (closestUsable == null && _playerInteraction.ColliderUsable != null))
+                    _playerInteraction.ColliderUsable = closestUsable;
             }
             else
             {
-                _playerInteraction.ColliderCatchable = null;
-                _playerInteraction.ColliderUsable = null;
+                if (_playerInteraction.ColliderCatchable != null)
+                    _playerInteraction.ColliderCatchable = null;
+
+                if (_playerInteraction.ColliderUsable != null)
+                    _playerInteraction.ColliderUsable = null;
             }
 
         }

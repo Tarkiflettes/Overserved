@@ -11,7 +11,7 @@ namespace Assets.Scripts.Player
 
         private float _minHeight = 15f;
 
-        private void FixedUpdate()
+        private void LateUpdate()
         {
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, 0);
             FixedCameraFollowSmooth(GetComponent<Camera>(), _playersToFollow);

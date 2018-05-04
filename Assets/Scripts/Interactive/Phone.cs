@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.Interactive
+﻿using UnityEngine;
+
+namespace Assets.Scripts.Interactive
 {
     public class Phone : Usable
     {

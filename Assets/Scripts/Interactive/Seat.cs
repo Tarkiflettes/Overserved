@@ -8,25 +8,24 @@ namespace Assets.Scripts.Interactive
 
         public bool HasClient
         {
-            get { return _client != null; }
+            get { return Client != null; }
         }
         public bool HasPlate
         {
-            get { return _plate != null; }
+            get { return Plate != null; }
+        }
+        public Plate Plate
+        {
+            get { return PlatePosition.GetComponentInChildren<Plate>(); }
+        }
+        public Client Client
+        {
+            get { return CharacterPosition.GetComponentInChildren<Client>(); }
         }
 
         public GameObject PlatePosition;
         public GameObject CharacterPosition;
-
-        private Client _client;
-        private Plate _plate;
-
-        private void Start()
-        {
-            _client = CharacterPosition.GetComponentInChildren<Client>();
-            _plate = CharacterPosition.GetComponentInChildren<Plate>();
-        }
-
+        
         public bool Serve(Plate plate)
         {
             if (!HasClient)
@@ -43,14 +42,9 @@ namespace Assets.Scripts.Interactive
             if (takenObject == null)
                 return false;
 
-            _plate = takenObject.GetComponent<Plate>();
+            Plate.CanBeCaught = false;
 
-            if (_plate == null)
-                return false;
-
-            _plate.CanBeCaught = false;
-
-            _client.StartEating(_plate);
+            Client.StartEating(Plate);
                 
             return true;
         }
@@ -59,7 +53,7 @@ namespace Assets.Scripts.Interactive
         {
             if (HasClient)
                 return false;
-            _client = character;
+            // todo : move client to seat
             return true;
         }
 

@@ -19,9 +19,22 @@ namespace Assets.Scripts.Interactive
         {
             base.Init();
             _food = FoodPosition.GetComponentInChildren<Food.Food>();
+            if (_food != null)
+                AddFood(_food);
             var stackedPlate = StackedPlatePosition.GetComponentInChildren<Plate>();
             if (stackedPlate != null)
                 Stack(stackedPlate);
+        }
+
+        public override void Interact(GameObject obj)
+        {
+            var food = obj.GetComponent<Food.Food>();
+            if (food != null)
+                AddFood(food);
+
+            var plate = obj.GetComponent<Plate>();
+            if (plate != null)
+                Stack(plate);
         }
 
         public void Stack(Plate plate)
@@ -29,7 +42,7 @@ namespace Assets.Scripts.Interactive
             if (!Finished)
                 return;
 
-            plate.CanBeCaught = false;
+            plate.CanBeCaught = true;
 
             var newPosition = new Vector3();
             var catchableCollider = plate.GetComponent<BoxCollider>();
@@ -37,6 +50,16 @@ namespace Assets.Scripts.Interactive
                 newPosition.y = catchableCollider.size.y / 2;
 
             plate.Catch(StackedPlatePosition, newPosition, new Quaternion());
+        }
+
+        public void AddFood(Food.Food food)
+        {
+            var newPosition = new Vector3();
+            var catchableCollider = food.GetComponent<BoxCollider>();
+            if (catchableCollider != null)
+                newPosition.y = catchableCollider.size.y / 2;
+
+            food.Catch(FoodPosition, newPosition, new Quaternion());
         }
 
         public IEnumerator Consume()

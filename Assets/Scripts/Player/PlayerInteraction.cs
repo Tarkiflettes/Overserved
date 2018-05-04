@@ -13,13 +13,23 @@ namespace Assets.Scripts.Player
         public GameObject ObjectPosition;
 
         [HideInInspector]
-        public GameObject ColliderCatchable;
+        public GameObject ColliderCatchable { get; set; }
         [HideInInspector]
-        public GameObject ColliderUsable;
+        public GameObject ColliderUsable
+        {
+            get { return _colliderUsable; }
+            set
+            {
+                FinishInteraction(_colliderUsable);
+                _colliderUsable = value;
+            }
+        }
 
         private GameObject _takenObject;
         private Joystick _joystick;
         private PlayerController _playerController;
+
+        private GameObject _colliderUsable;
 
         private void Start()
         {
@@ -28,7 +38,7 @@ namespace Assets.Scripts.Player
             _takenObject = null;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (_joystick == null)
             {
@@ -92,7 +102,8 @@ namespace Assets.Scripts.Player
 
         private void FinishInteraction(GameObject obj)
         {
-            Debug.Log("Finish Interact");
+            if (obj == null)
+                return;
             var usable = obj.GetComponent<Interactive.Interactive>();
             if (usable == null)
                 return;

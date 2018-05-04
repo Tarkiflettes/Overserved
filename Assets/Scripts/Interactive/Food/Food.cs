@@ -1,9 +1,10 @@
 ﻿using System.Collections;
+using Assets.Scripts.Interactive;
 using UnityEngine;
 
 namespace Assets.Scripts.Food
 {
-    public class Food : MonoBehaviour
+    public class Food : Catchable
     {
 
         public bool Finished { get; private set; }
