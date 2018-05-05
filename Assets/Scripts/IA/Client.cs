@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Assets.Scripts.Interactive;
+using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
 namespace Assets.Scripts.IA
@@ -7,23 +8,23 @@ namespace Assets.Scripts.IA
     public class Client : MonoBehaviour
     {
         
-        private Plate _plate;
+        private Dish _dish;
 
-        public void StartEating(Plate plate)
+        public void StartEating(Dish dish)
         {
-            _plate = plate;
+            _dish = dish;
             StartCoroutine(Eat());
         }
 
         private void Finish()
         {
             var table = GetComponentInParent<Table>();
-            table.AddPlateToFinishPosition(_plate);
+            table.AddPlateToFinishPosition(_dish);
         }
 
         private IEnumerator Eat()
         {
-            yield return _plate.Consume();
+            yield return _dish.Consume();
             Finish();
         }
 

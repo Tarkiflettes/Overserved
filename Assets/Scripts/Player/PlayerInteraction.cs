@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Interactive;
+﻿using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
@@ -93,7 +93,7 @@ namespace Assets.Scripts.Player
 
         private void Interact(GameObject obj)
         {
-            var usable = obj.GetComponent<Interactive.Interactive>();
+            var usable = obj.GetComponent<Interactive.Abstract.Interactive>();
             if (usable == null)
                 return;
             usable.Interact();
@@ -104,7 +104,7 @@ namespace Assets.Scripts.Player
         {
             if (obj == null)
                 return;
-            var usable = obj.GetComponent<Interactive.Interactive>();
+            var usable = obj.GetComponent<Interactive.Abstract.Interactive>();
             if (usable == null)
                 return;
             usable.IsInteracting = false;
@@ -112,7 +112,7 @@ namespace Assets.Scripts.Player
 
         private void Interact(GameObject obj, GameObject obj2)
         {
-            var usable = obj.GetComponent<Interactive.Interactive>();
+            var usable = obj.GetComponent<Interactive.Abstract.Interactive>();
             if (usable == null)
                 return;
             usable.Interact(obj2);

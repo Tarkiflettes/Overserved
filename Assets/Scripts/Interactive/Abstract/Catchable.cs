@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Interactive
+namespace Assets.Scripts.Interactive.Abstract
 {
     public class Catchable : Interactive
     {

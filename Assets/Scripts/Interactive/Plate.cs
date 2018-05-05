@@ -1,26 +1,26 @@
 ﻿using System.Collections;
+using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
 namespace Assets.Scripts.Interactive
 {
-    public class Plate : Catchable
+    public class Plate : Dish
     {
 
         public bool Finished
         {
-            get { return _food == null || _food.Finished; }
+            get { return Food == null || Food.Finished; }
+        }
+        public Food.Food Food
+        {
+            get { return FoodPosition.GetComponentInChildren<Food.Food>(); }
         }
         public GameObject StackedPlatePosition;
         public GameObject FoodPosition;
 
-        private Food.Food _food;
-
         protected override void Init()
         {
             base.Init();
-            _food = FoodPosition.GetComponentInChildren<Food.Food>();
-            if (_food != null)
-                AddFood(_food);
             var stackedPlate = StackedPlatePosition.GetComponentInChildren<Plate>();
             if (stackedPlate != null)
                 Stack(stackedPlate);
@@ -28,9 +28,7 @@ namespace Assets.Scripts.Interactive
 
         public override void Interact(GameObject obj)
         {
-            var food = obj.GetComponent<Food.Food>();
-            if (food != null)
-                AddFood(food);
+            base.Interact(obj);
 
             var plate = obj.GetComponent<Plate>();
             if (plate != null)
@@ -52,8 +50,10 @@ namespace Assets.Scripts.Interactive
             plate.Catch(StackedPlatePosition, newPosition, new Quaternion());
         }
 
-        public void AddFood(Food.Food food)
+        public override void AddFood(Food.Food food)
         {
+            if (Food != null)
+                return;
             var newPosition = new Vector3();
             var catchableCollider = food.GetComponent<BoxCollider>();
             if (catchableCollider != null)
@@ -62,11 +62,11 @@ namespace Assets.Scripts.Interactive
             food.Catch(FoodPosition, newPosition, new Quaternion());
         }
 
-        public IEnumerator Consume()
+        public override IEnumerator Consume()
         {
             if (Finished)
                 yield break;
-            yield return _food.Consume();
+            yield return Food.Consume();
         }
 
     }

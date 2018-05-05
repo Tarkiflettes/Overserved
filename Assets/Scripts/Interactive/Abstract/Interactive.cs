@@ -2,7 +2,7 @@
 using Assets.Scripts.UI;
 using UnityEngine;
 
-namespace Assets.Scripts.Interactive
+namespace Assets.Scripts.Interactive.Abstract
 {
     public abstract class Interactive : MonoBehaviour
     {

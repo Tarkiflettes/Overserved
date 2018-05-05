@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Interactive.Abstract;
 
 namespace Assets.Scripts.Interactive
 {
@@ -9,7 +9,7 @@ namespace Assets.Scripts.Interactive
         {
             get { return _callDuration > 0; }
         }
-        private bool _isRigging = false;
+        private bool _isRigging;
         private int _callDuration;
         private int _clientDuration;
 

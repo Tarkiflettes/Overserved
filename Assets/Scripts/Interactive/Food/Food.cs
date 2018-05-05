@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Assets.Scripts.Interactive;
+using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
-namespace Assets.Scripts.Food
+namespace Assets.Scripts.Interactive.Food
 {
     public class Food : Catchable
     {

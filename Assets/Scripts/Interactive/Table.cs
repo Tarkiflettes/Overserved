@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
 namespace Assets.Scripts.Interactive
@@ -38,6 +39,7 @@ namespace Assets.Scripts.Interactive
             var seatToServe = FindSeatWithoutPlate();
             if (seatToServe == null)
                 return;
+
             seatToServe.Serve(plate);
         }
 
@@ -53,8 +55,15 @@ namespace Assets.Scripts.Interactive
             bigPlate.Catch(BigPlatePosition, newPosition, new Quaternion());
         }
 
-        public void AddPlateToFinishPosition(Plate plate)
+        public void AddPlateToFinishPosition(Dish dish)
         {
+            var plate = dish.GetComponent<Plate>();
+            if (plate == null)
+            {
+                dish.CanBeCaught = true;
+                return;
+            }
+
             var plateInFinisgPosition = FinishedPlatePosition.GetComponentInChildren<Plate>();
             
             if (plateInFinisgPosition != null)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Interactive.Abstract;
+using UnityEngine;
 
 namespace Assets.Scripts.Interactive
 {
