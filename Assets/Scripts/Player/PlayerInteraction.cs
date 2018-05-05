@@ -52,14 +52,12 @@ namespace Assets.Scripts.Player
                 if (ColliderCatchable != null &&
                     HasObject == false)
                 {
-                    Debug.Log("Catch " + ColliderCatchable);
                     var catchable = ColliderCatchable.GetComponent<Catchable>();
                     if (catchable != null)
                         Catch(catchable);
                 }
                 else if (HasObject)
                 {
-                    Debug.Log("Drop " + _takenObject);
                     Drop();
                 }
             }

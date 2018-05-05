@@ -54,12 +54,15 @@ namespace Assets.Scripts.Interactive
         {
             if (Food != null)
                 return;
+
             var newPosition = new Vector3();
             var catchableCollider = food.GetComponent<BoxCollider>();
             if (catchableCollider != null)
                 newPosition.y = catchableCollider.size.y / 2;
 
             food.Catch(FoodPosition, newPosition, new Quaternion());
+
+            food.CanBeCaught = false;
         }
 
         public override IEnumerator Consume()

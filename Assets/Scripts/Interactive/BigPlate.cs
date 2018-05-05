@@ -28,23 +28,27 @@ namespace Assets.Scripts.Interactive
             var foodPosition = GetFreePosition();
             if (foodPosition == null)
                 return;
+
             var newPosition = new Vector3();
             var catchableCollider = food.GetComponent<BoxCollider>();
             if (catchableCollider != null)
                 newPosition.y = catchableCollider.size.y / 2;
 
             food.Catch(foodPosition, newPosition, new Quaternion());
+
+            food.CanBeCaught = false;
         }
 
         public override IEnumerator Consume()
         {
-            if (Finished)
-                yield break;
-            var food = GetNotFinishedFood();
-            if (food == null)
-                yield break;
-            _consumed.Add(food);
-            yield return food.Consume();
+            while (!Finished)
+            {
+                var food = GetNotFinishedFood();
+                if (food == null)
+                    continue;
+                _consumed.Add(food);
+                yield return food.Consume();
+            }
         }
 
         public Food.Food GetNotFinishedFood()

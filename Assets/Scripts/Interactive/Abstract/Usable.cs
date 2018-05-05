@@ -5,6 +5,11 @@ namespace Assets.Scripts.Interactive.Abstract
     public class Usable : Abstract.Interactive
     {
 
+        protected override void Init()
+        {
+            base.Init();
+        }
+
         public override void Interact()
         {
             Debug.Log("Interact Usable : " + name);
@@ -13,6 +18,11 @@ namespace Assets.Scripts.Interactive.Abstract
         public override void Interact(GameObject obj)
         {
             Debug.Log("Interact Usable : " + name + " with " + obj.name);
+        }
+
+        public override bool AcceptRaycast()
+        {
+            return true;
         }
 
     }

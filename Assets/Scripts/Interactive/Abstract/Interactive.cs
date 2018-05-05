@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Manager;
+﻿using System;
+using Assets.Scripts.Manager;
 using Assets.Scripts.UI;
 using UnityEngine;
 
@@ -37,6 +38,7 @@ namespace Assets.Scripts.Interactive.Abstract
 
         public abstract void Interact();
         public abstract void Interact(GameObject obj);
+        public abstract bool AcceptRaycast();
 
         public void EnableUi(bool state) {
             if (_iconUI == null)

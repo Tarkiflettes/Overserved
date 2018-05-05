@@ -17,7 +17,7 @@ namespace Assets.Scripts.IA
         }
 
         private void Finish()
-        {
+        { 
             var table = GetComponentInParent<Table>();
             table.AddPlateToFinishPosition(_dish);
         }

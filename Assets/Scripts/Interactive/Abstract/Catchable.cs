@@ -52,5 +52,10 @@ namespace Assets.Scripts.Interactive.Abstract
         {
         }
 
+        public override bool AcceptRaycast()
+        {
+            return CanBeCaught;
+        }
+
     }
 }

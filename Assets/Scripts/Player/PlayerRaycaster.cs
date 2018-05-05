@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
@@ -56,16 +57,18 @@ namespace Assets.Scripts.Player
         {
             var minDist = float.MaxValue;
             GameObject closestTableGameObject = null;
-            foreach (var tableGameObject
-                in colliderGameObjects)
+            foreach (var gameObject in colliderGameObjects)
             {
-                if (objectTag.Contains(tableGameObject.tag))
+                if (objectTag.Contains(gameObject.tag))
                 {
-                    var dist = (tableGameObject.transform.position - transform.position).magnitude;
+                    var interactive = gameObject.GetComponent<Interactive.Abstract.Interactive>();
+                    if (!interactive.AcceptRaycast())
+                        continue;;
+                    var dist = (gameObject.transform.position - transform.position).magnitude;
                     if (minDist > dist)
                     {
                         minDist = dist;
-                        closestTableGameObject = tableGameObject;
+                        closestTableGameObject = gameObject;
                     }
                 }
             }
