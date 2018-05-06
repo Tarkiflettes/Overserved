@@ -20,6 +20,7 @@ namespace Assets.Scripts.Interactive.Food
 
         public void Finish()
         {
+            Debug.Log("Food finished");
             Finished = true;
         }
 

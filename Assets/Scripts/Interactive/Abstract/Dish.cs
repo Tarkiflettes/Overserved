@@ -6,6 +6,8 @@ namespace Assets.Scripts.Interactive.Abstract
     public abstract class Dish : Catchable
     {
 
+        public virtual bool Finished { get; set; }
+
         public override void Interact(GameObject obj)
         {
             var food = obj.GetComponent<Food.Food>();

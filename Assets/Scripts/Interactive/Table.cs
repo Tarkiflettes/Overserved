@@ -53,6 +53,14 @@ namespace Assets.Scripts.Interactive
             if (catchableCollider != null)
                 newPosition.y = catchableCollider.size.y / 2;
             bigPlate.Catch(BigPlatePosition, newPosition, new Quaternion());
+
+            bigPlate.CanBeCaught = false;
+
+            foreach (var seat in Seats)
+            {
+                if (seat.HasClient)
+                    seat.Client.Eat(bigPlate);
+            }
         }
 
         public void AddPlateToFinishPosition(Dish dish)

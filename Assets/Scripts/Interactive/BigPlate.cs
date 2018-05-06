@@ -9,9 +9,9 @@ namespace Assets.Scripts.Interactive
     public class BigPlate : Dish
     {
 
-        public bool Finished
+        public override bool Finished
         {
-            get { return GetFoods().Any(food => food != null && food.Finished); }
+            get { return GetFoods().All(food => food == null || food.Finished); }
         }
         public GameObject[] FoodPositions;
 
@@ -41,14 +41,11 @@ namespace Assets.Scripts.Interactive
 
         public override IEnumerator Consume()
         {
-            while (!Finished)
-            {
-                var food = GetNotFinishedFood();
-                if (food == null)
-                    continue;
-                _consumed.Add(food);
-                yield return food.Consume();
-            }
+            var food = GetNotFinishedFood();
+            if (food == null)
+                yield break;
+            _consumed.Add(food);
+            yield return food.Consume();
         }
 
         public Food.Food GetNotFinishedFood()

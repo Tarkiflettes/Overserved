@@ -44,7 +44,7 @@ namespace Assets.Scripts.Interactive
 
             Plate.CanBeCaught = false;
 
-            Client.StartEating(Plate);
+            Client.Eat(Plate);
                 
             return true;
         }

@@ -7,7 +7,7 @@ namespace Assets.Scripts.Interactive
     public class Plate : Dish
     {
 
-        public bool Finished
+        public override bool Finished
         {
             get { return Food == null || Food.Finished; }
         }
