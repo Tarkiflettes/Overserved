@@ -69,6 +69,10 @@ namespace Assets.Scripts.Player
                 {
                     Interact(ColliderUsable);
                 }
+                else if (ColliderUsable != null && HasObject)
+                {
+                    Interact(_takenObject, ColliderUsable);
+                }
                 else if (HasObject)
                 {
                     Interact(_takenObject);

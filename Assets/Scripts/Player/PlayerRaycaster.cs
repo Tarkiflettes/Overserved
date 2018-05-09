@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Interactive.Abstract;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
@@ -56,23 +55,23 @@ namespace Assets.Scripts.Player
         private GameObject ClosestGameObject(IEnumerable<GameObject> colliderGameObjects, string objectTag)
         {
             var minDist = float.MaxValue;
-            GameObject closestTableGameObject = null;
-            foreach (var gameObject in colliderGameObjects)
+            GameObject closestObject = null;
+            foreach (var colliderObject in colliderGameObjects)
             {
-                if (objectTag.Contains(gameObject.tag))
+                if (objectTag.Contains(colliderObject.tag))
                 {
-                    var interactive = gameObject.GetComponent<Interactive.Abstract.Interactive>();
-                    if (!interactive.AcceptRaycast())
-                        continue;;
-                    var dist = (gameObject.transform.position - transform.position).magnitude;
+                    var interactive = colliderObject.GetComponent<Interactive.Abstract.Interactive>();
+                    if (interactive != null && !interactive.AcceptRaycast())
+                        continue;
+                    var dist = (colliderObject.transform.position - transform.position).magnitude;
                     if (minDist > dist)
                     {
                         minDist = dist;
-                        closestTableGameObject = gameObject;
+                        closestObject = colliderObject;
                     }
                 }
             }
-            return closestTableGameObject;
+            return closestObject;
         }
 
     }

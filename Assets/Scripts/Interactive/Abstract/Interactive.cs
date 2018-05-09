@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.Scripts.Manager;
+﻿using Assets.Scripts.Manager;
 using Assets.Scripts.UI;
 using UnityEngine;
 
@@ -29,8 +28,8 @@ namespace Assets.Scripts.Interactive.Abstract
         {
             if (Image == null)
                 return;
-            var Ui = Instantiate(GameManager.AssetsManager.InteractivesUI);
-            _iconUI = Ui.GetComponentInChildren<Icon>();
+            var ui = Instantiate(GameManager.AssetsManager.InteractivesUI);
+            _iconUI = ui.GetComponentInChildren<Icon>();
             _iconUI.transform.SetParent(transform, false);
             if (_iconUI != null)
                 _iconUI.SetImage(Image);
