@@ -102,6 +102,15 @@ namespace Assets.Scripts.Player
             usable.IsInteracting = true;
         }
 
+        private void Interact(GameObject obj, GameObject obj2)
+        {
+            var usable = obj.GetComponent<Interactive.Abstract.Interactive>();
+            if (usable == null)
+                return;
+            usable.Interact(obj2);
+            usable.IsInteracting = true;
+        }
+
         private void FinishInteraction(GameObject obj)
         {
             if (obj == null)
@@ -110,14 +119,6 @@ namespace Assets.Scripts.Player
             if (usable == null)
                 return;
             usable.IsInteracting = false;
-        }
-
-        private void Interact(GameObject obj, GameObject obj2)
-        {
-            var usable = obj.GetComponent<Interactive.Abstract.Interactive>();
-            if (usable == null)
-                return;
-            usable.Interact(obj2);
         }
 
         private void Catch(Catchable catchable)

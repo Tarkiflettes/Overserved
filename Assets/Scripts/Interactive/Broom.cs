@@ -7,10 +7,26 @@ namespace Assets.Scripts.Interactive
     public class Broom : Catchable
     {
 
-        public override void Interact(GameObject obj)
+        private RottenFood _rottenFood;
+
+        private void Update()
         {
-            var rottenFood = obj.GetComponent<RottenFood>();
-            Debug.Log("LA : " + obj);
+            if (IsInteracting && _rottenFood != null)
+                _rottenFood.Clean();
+        }
+
+        private void OnTriggerEnter(Collider col)
+        {
+            var rottenFood = col.gameObject.GetComponent<RottenFood>();
+            if (rottenFood != null)
+                _rottenFood = rottenFood;
+        }
+
+        private void OnTriggerExit(Collider col)
+        {
+            var rottenFood = col.gameObject.GetComponent<RottenFood>();
+            if (rottenFood != null)
+                _rottenFood = null;
         }
 
     }
