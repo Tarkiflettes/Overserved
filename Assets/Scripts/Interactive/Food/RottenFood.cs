@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Interactive.Abstract;
 using Assets.Scripts.Player;
+using Boo.Lang;
 using UnityEngine;
 
 namespace Assets.Scripts.Interactive.Food
@@ -9,38 +10,58 @@ namespace Assets.Scripts.Interactive.Food
 
         public bool IsClean
         {
-            get { return _cleanDuration <= 0; }
+            get { return CleanDuration <= 0; }
         }
-
         public float SlownessMultiplier = 0.5f;
+        public int CleanDuration = 100;
 
-        private int _cleanDuration = 100;
-        // todo : player in to remove slowness on finish cleaning
+        private readonly List<PlayerController> _playersIn;
+
+        public RottenFood()
+        {
+            _playersIn = new List<PlayerController>();
+        }
 
         public void Clean()
         {
             if (IsClean)
                 FinishClean();
-            _cleanDuration--;
+            CleanDuration--;
         }
 
         public void FinishClean()
         {
+            for (var i = _playersIn.Count - 1; i >= 0; i--)
+            {
+                RemovePlayerIn(_playersIn[i]);
+            }
             Destroy(gameObject);
         }
 
-        void OnTriggerEnter(Collider col)
+        private void OnTriggerEnter(Collider col)
         {
-            var playerController = col.gameObject.GetComponent<PlayerController>();
-            if (playerController != null)
-                playerController.Speed *= SlownessMultiplier;
+            AddPlayerIn(col.gameObject.GetComponent<PlayerController>());
         }
 
-        void OnTriggerExit(Collider col)
+        private void OnTriggerExit(Collider col)
         {
-            var playerController = col.gameObject.GetComponent<PlayerController>();
-            if (playerController != null)
-                playerController.Speed /= SlownessMultiplier;
+            RemovePlayerIn(col.gameObject.GetComponent<PlayerController>());
+        }
+
+        private void AddPlayerIn(PlayerController player)
+        {
+            if (player == null)
+                return;
+            player.Speed *= SlownessMultiplier;
+            _playersIn.Add(player);
+        }
+
+        private void RemovePlayerIn(PlayerController player)
+        {
+            if (player == null)
+                return;
+            player.Speed /= SlownessMultiplier;
+            _playersIn.Remove(player);
         }
 
     }
