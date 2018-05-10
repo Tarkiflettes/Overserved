@@ -1,7 +1,9 @@
-﻿using Assets.Scripts.Interactive.Abstract;
+﻿using System;
+using Assets.Scripts.Interactive.Abstract;
 using Assets.Scripts.Player;
 using Boo.Lang;
 using UnityEngine;
+using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Interactive.Food
 {
@@ -10,23 +12,30 @@ namespace Assets.Scripts.Interactive.Food
 
         public bool IsClean
         {
-            get { return CleanDuration <= 0; }
+            get { return _cleanDuration <= 0; }
         }
-        public float SlownessMultiplier = 0.5f;
-        public int CleanDuration = 100;
+        public readonly float SlownessMultiplier = 0.5f;
+        public readonly int CleanDuration = 100;
 
-        private readonly List<PlayerController> _playersIn;
+        private int _cleanDuration;
 
-        public RottenFood()
+        private List<PlayerController> _playersIn;
+
+        protected override void Init()
         {
+            base.Init();
             _playersIn = new List<PlayerController>();
+            _cleanDuration = CleanDuration;
+            EnableProgressbar(true);
+            ProgressBar.SetValue(_cleanDuration.ToPercent(CleanDuration));
         }
 
         public void Clean()
         {
             if (IsClean)
                 FinishClean();
-            CleanDuration--;
+            _cleanDuration--;
+            ProgressBar.SetValue(_cleanDuration.ToPercent(CleanDuration));
         }
 
         public void FinishClean()

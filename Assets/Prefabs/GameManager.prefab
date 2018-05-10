@@ -52,11 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f76043a9ecc4a4f8c02283455c6107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Icon: {fileID: 1062015251167758, guid: 86871ced92770f24ab8d3c82dd5348ae, type: 2}
+  ProgressBar: {fileID: 1062015251167758, guid: 50bee31a02f7b744287adc98a7c88ad0,
+    type: 2}
   Interactives:
   - {fileID: 1635547528396072, guid: 45adf29d57b9f2641811e4816290a18e, type: 2}
-  - {fileID: 1139007992856236, guid: 681d3da7e881a5b479dad563f05070ac, type: 2}
-  InteractivesUI: {fileID: 1062015251167758, guid: 86871ced92770f24ab8d3c82dd5348ae,
-    type: 2}
+  - {fileID: 0}
   Clients:
   - {fileID: 1471014385769272, guid: 8627e1e9b232f0647bdf7067690c61ba, type: 2}
   ClientSpawner: {fileID: 0}

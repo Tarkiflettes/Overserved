@@ -23,11 +23,15 @@ namespace Assets.Scripts.Manager
         private int _clientSpawnTimer;
         private int _currentClientSpawnTimer = 0;
 
+        private void OnEnable()
+        {
+            AssetsManager = GetComponent<AssetsManager>();
+        }
+
         // Use this for initialization
         private void Start()
         {
             RandommizeClientSpawnTimer();
-            AssetsManager = GetComponent<AssetsManager>();
             _spawnTableGameObjects = GameObject.FindGameObjectsWithTag("SpawnTable").ToList();
         }
 

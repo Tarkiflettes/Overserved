@@ -21,5 +21,15 @@ namespace Assets.Scripts.Utils
             }
         }
 
+        public static float ToPercent(this Int32 value, int max)
+        {
+            return ((float) value).ToPercent(max);
+        }
+
+        public static float ToPercent(this Single value, float max)
+        {
+            return value / max;
+        }
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.UI
 {
-    public class InteractiveUI : MonoBehaviour
+    public abstract class InteractiveUI : MonoBehaviour
     {
         
         protected Transform Camera;
@@ -12,11 +12,16 @@ namespace Assets.Scripts.UI
             Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
         }
 
-        protected void UpdateUI()
+        protected virtual void UpdateUI()
         {
             var newRotation = new Vector3(Camera.position.x, Camera.position.y, Camera.position.z);
             transform.rotation = Quaternion.LookRotation(newRotation, Vector3.forward);
             transform.position = transform.parent.position + new Vector3(0, 1, 0);
+        }
+
+        private void LateUpdate()
+        {
+            UpdateUI();
         }
 
         public void Enable(bool state)

@@ -8,11 +8,13 @@ namespace Assets.Scripts.Interactive.Abstract
     {
 
         public Sprite Image;
-
         [HideInInspector]
         public bool IsInteracting = false;
+        public bool HasProgressBar = false;
 
-        private Icon _iconUI;
+        protected ProgressBar ProgressBar;
+
+        private Icon _icon;
 
         private void Start()
         {
@@ -24,25 +26,56 @@ namespace Assets.Scripts.Interactive.Abstract
             SetUI();
         }
 
-        protected void SetUI()
-        {
-            if (Image == null)
-                return;
-            var ui = Instantiate(GameManager.AssetsManager.InteractivesUI);
-            _iconUI = ui.GetComponentInChildren<Icon>();
-            _iconUI.transform.SetParent(transform, false);
-            if (_iconUI != null)
-                _iconUI.SetImage(Image);
-        }
-
         public abstract void Interact();
         public abstract void Interact(GameObject obj);
         public abstract bool AcceptRaycast();
 
-        public void EnableUi(bool state) {
-            if (_iconUI == null)
-                    return;
-            _iconUI.Enable(state);
+        private void SetUI()
+        {
+            InitIcon();
+            InitProgressBar();
+        }
+
+        private void InitIcon()
+        {
+            if (Image == null)
+                return;
+            var ui = Instantiate(GameManager.AssetsManager.Icon);
+            _icon = ui.GetComponentInChildren<Icon>();
+            if (_icon == null)
+                return;
+            _icon.transform.SetParent(transform, false);
+            _icon.SetImage(Image);
+        }
+
+        private void InitProgressBar()
+        {
+            if (!HasProgressBar)
+                return;
+            var ui = Instantiate(GameManager.AssetsManager.ProgressBar);
+            ProgressBar = ui.GetComponentInChildren<ProgressBar>();
+            if (ProgressBar == null)
+                return;
+            ProgressBar.transform.SetParent(transform, false);
+            ProgressBar.Enable(false);
+        }
+
+        public void EnableUi(bool state)
+        {
+            EnableIcon(state);
+            EnableProgressbar(state);
+        }
+
+        public void EnableIcon(bool state)
+        {
+            if (_icon != null)
+                _icon.Enable(state);
+        }
+
+        public void EnableProgressbar(bool state)
+        {
+            if (HasProgressBar && ProgressBar != null)
+                ProgressBar.Enable(state);
         }
 
     }

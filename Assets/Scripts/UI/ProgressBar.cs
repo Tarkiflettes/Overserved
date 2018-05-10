@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
@@ -13,14 +14,9 @@ namespace Assets.Scripts.UI
             ScrollBarUI.size = 0;
         }
 
-        private void Update()
-        {
-            UpdateUI();
-        }
-
         public void SetValue(float value)
         {
-            ScrollBarUI.size = value;
+            ScrollBarUI.size = 1 - value;
         }
 
     }

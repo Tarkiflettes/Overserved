@@ -12,13 +12,13 @@ namespace Assets.Scripts.UI
         {
             SetCamera();
         }
-
-        private void Update()
+        
+        protected override void UpdateUI()
         {
+            base.UpdateUI();
+
             var newRotationImage = new Vector3(Camera.position.x, Camera.position.y, Camera.position.z);
             IconImage.transform.rotation = Quaternion.LookRotation(newRotationImage, Vector3.forward);
-
-            UpdateUI();
         }
 
         public void SetImage(Sprite image)

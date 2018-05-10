@@ -7,8 +7,10 @@ namespace Assets.Scripts.Manager
     public class AssetsManager : MonoBehaviour
     {
 
+        public GameObject Icon;
+        public GameObject ProgressBar;
+
         public GameObject[] Interactives;
-        public GameObject InteractivesUI;
         public GameObject[] Clients;
         public GameObject ClientSpawner;
         public List<Table> Tables;

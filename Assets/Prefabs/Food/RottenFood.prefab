@@ -168,4 +168,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Image: {fileID: 0}
   IsInteracting: 0
-  SlownessMultiplier: 0.5
+  HasProgressBar: 1
