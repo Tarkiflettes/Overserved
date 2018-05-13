@@ -17,11 +17,11 @@ namespace Assets.Scripts.Player
         public bool IsMoving = false;
         public int PlayerNumber;
 
+        public Joystick Joystick { get; private set; }
+
         private CharacterController _characterController;
         private int _currentDashTime;
         private float _defaultPositionY;
-
-        public Joystick Joystick { get; private set; }
 
         private void Start()
         {
