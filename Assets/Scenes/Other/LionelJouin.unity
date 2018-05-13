@@ -659,6 +659,11 @@ Prefab:
       propertyPath: UIManager
       value: 
       objectReference: {fileID: 817898723}
+    - target: {fileID: 114863910937408956, guid: a5557cde79747a647951fb73ded895f6,
+        type: 2}
+      propertyPath: Duration
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5557cde79747a647951fb73ded895f6, type: 2}
   m_IsPrefabParent: 0

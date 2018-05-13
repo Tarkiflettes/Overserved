@@ -98,7 +98,7 @@ namespace Assets.Scripts.Interactive
                 return;
             _isRigging = true;
             _clientDuration = ClientDuration; // todo : random
-            _eventUI = GameManager.Instance.UIManager.AddEvent(GameManager.AssetsManager.EventUI);
+            _eventUI = GameManager.Instance.UIManager.AddEvent(null);
             ProgressBar.SetValue(_callDuration.ToPercent(CallDuration));
             _eventUI.SetValue(_clientDuration.ToPercent(ClientDuration));
         }

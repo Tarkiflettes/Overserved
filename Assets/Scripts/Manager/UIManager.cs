@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.UI;
 using UnityEngine;
@@ -24,28 +25,29 @@ namespace Assets.Scripts.Manager
         private IEnumerator Test()
         {
             yield return new WaitForSeconds(1);
-            AddEvent(GameManager.AssetsManager.EventUI);
+            AddEvent(null);
             yield return new WaitForSeconds(2);
-            AddEvent(GameManager.AssetsManager.EventUI);
+            AddEvent(null);
             yield return new WaitForSeconds(1);
-            AddEvent(GameManager.AssetsManager.EventUI);
+            AddEvent(null);
             yield return new WaitForSeconds(1);
             RemoveEvent(_events[0]);
             yield return new WaitForSeconds(2);
             RemoveEvent(_events[1]);
             yield return new WaitForSeconds(2);
-            AddEvent(GameManager.AssetsManager.EventUI);
-            AddEvent(GameManager.AssetsManager.EventUI);
+            AddEvent(null);
+            AddEvent(null);
             yield return new WaitForSeconds(1);
         }
 
-        public EventUI AddEvent(EventUI eventUI)
+        public EventUI AddEvent(Sprite image)
         {
-            var ui = Instantiate(eventUI);
+            var ui = Instantiate(GameManager.AssetsManager.EventUI);
             var eUI = ui.GetComponentInChildren<EventUI>();
             if (eUI == null)
                 return null;
             eUI.transform.SetParent(EventsPanel.transform, false);
+            eUI.Init(image);
             _events.Add(eUI);
             ResetEventsPosition();
             return eUI;
@@ -83,7 +85,11 @@ namespace Assets.Scripts.Manager
 
         public void SetTime(int timeLeft)
         {
-            Score.text = timeLeft.ToString();
+            var timeSpan = new TimeSpan(0, 0, timeLeft);
+            var time = string.Format("{0:00}:{1:00}",
+                (int)timeSpan.TotalMinutes,
+                timeSpan.Seconds);
+            Time.text = time;
         }
 
     }
