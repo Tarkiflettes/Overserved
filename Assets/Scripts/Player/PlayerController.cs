@@ -33,8 +33,8 @@ namespace Assets.Scripts.Player
 
         private void FixedUpdate()
         {
-            var axisHorizontal = Input.GetAxis(Joystick.Horizontal);
-            var axisVertical = Input.GetAxis(Joystick.Vertical);
+            var axisHorizontal = Input.GetAxisRaw(Joystick.Horizontal);
+            var axisVertical = Input.GetAxisRaw(Joystick.Vertical);
             var moveDirection = new Vector3(axisHorizontal, 0, axisVertical);
             var speed = Speed;
 
@@ -60,7 +60,7 @@ namespace Assets.Scripts.Player
                 _currentDashTime++;
             }
 
-            _characterController.Move(moveDirection * Time.deltaTime * speed);
+            _characterController.Move(moveDirection.normalized * Time.deltaTime * speed);
         }
 
     }
