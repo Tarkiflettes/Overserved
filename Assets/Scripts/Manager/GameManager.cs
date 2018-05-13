@@ -1,146 +1,52 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Assets.Scripts.Environment;
-using Assets.Scripts.IA;
-using Assets.Scripts.Utils;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Assets.Scripts.Manager
 {
     public class GameManager : MonoBehaviour
     {
 
+        [Header("Manager")]
+        public static GameManager Instance;
         public static AssetsManager AssetsManager;
+        public UIManager UIManager;
 
-        private int _maxFamilySize = 1;
-        private const int MinClientSpawn = 100, MaxClientSpawn = 100;
-        private List<GameObject> _spawnTableGameObjects;
+        [Header("Score")]
+        public int PlacedClient;
+        public int ServedClient;
+        public int MissedReservation;
+        public int TakenReservation;
 
-        private const int FoodSpawnTimer = 100;
-        private int _currentFoodSpawnTimer = 0;
+        void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
 
-        private int _clientSpawnTimer;
-        private int _currentClientSpawnTimer = 0;
+            else if (Instance != this)
+                Destroy(gameObject);
+
+            DontDestroyOnLoad(gameObject);
+        }
 
         private void OnEnable()
         {
             AssetsManager = GetComponent<AssetsManager>();
         }
 
-        // Use this for initialization
         private void Start()
         {
-            RandommizeClientSpawnTimer();
-            _spawnTableGameObjects = GameObject.FindGameObjectsWithTag("SpawnTable").ToList();
+            StartCoroutine(Test());
         }
 
-        // Update is called once per frame
-        private void FixedUpdate()
+        private IEnumerator Test()
         {
-            // ********** FOOD SPAWN
-            if (_currentFoodSpawnTimer < FoodSpawnTimer)
-            {
-                _currentFoodSpawnTimer++;
-            }
-            else
-            {
-                _currentFoodSpawnTimer = 0;
-                SpawnInteractive(AssetsManager.Interactives[Mathf.CeilToInt(Random.Range(0, AssetsManager.Interactives.Length))]);
-            }
-
-            // ********** CLIENT SPAWN
-            if (_currentClientSpawnTimer < _clientSpawnTimer)
-            {
-                _currentClientSpawnTimer++;
-            }
-            else
-            {
-                _currentClientSpawnTimer = 0;
-                RandommizeClientSpawnTimer();
-                SpawnClients(PickClientFamily());
-            }
+            yield return new WaitForSeconds(1);
+            RingPhone();
         }
 
-        private void SpawnInteractive(GameObject interactiveGameObjectameObject)
+        private void RingPhone()
         {
-            _spawnTableGameObjects.Shuffle();
-            var i = 0;
-            GameObject parentObject = null;
-            while (i < _spawnTableGameObjects.Count - 1 && parentObject == null)
-            {
-                //TODO: Condition to change
-                if (_spawnTableGameObjects[i].transform.childCount < 1)
-                    parentObject = _spawnTableGameObjects[i];
-
-                i++;
-            }
-
-            if (parentObject != null)
-            {
-                var childObject = Instantiate(interactiveGameObjectameObject);
-
-                childObject.transform.parent = parentObject.transform;
-                childObject.transform.localPosition = new Vector3(0, 0.5f, 0);
-                childObject.transform.rotation = Quaternion.identity;
-            }
-        }
-
-        private Table PickTable()
-        {
-            AssetsManager.Tables.Shuffle();
-            var i = 0;
-            Table table = null;
-            while (i < AssetsManager.Tables.Count - 1 && table == null)
-            {
-                if (!AssetsManager.Tables[i].IsUsed)
-                    table = AssetsManager.Tables[i];
-
-                i++;
-            }
-
-            return table;
-        }
-
-        private void SpawnClients(List<GameObject> gameObjects)
-        {
-
-            var table = PickTable();
-            if (table != null)
-            {
-                foreach (var clientGameObject in gameObjects)
-                {
-                    var seat = table.PickSeat();
-                    if (seat != null)
-                    {
-                        Instantiate(clientGameObject);
-                        clientGameObject.SetActive(false);
-                        clientGameObject.GetComponent<ClientIA>().GetComponent<NavMeshAgent>().Warp(new Vector3(AssetsManager.ClientSpawner.transform.position.x, 1, AssetsManager.ClientSpawner.transform.position.z));
-
-                        Debug.Log(seat.SeatGameObject.transform.position);
-                        clientGameObject.GetComponent<ClientIA>().MoveTo(seat.SeatGameObject.transform.position);
-
-                        clientGameObject.SetActive(true);
-                    }
-                }
-            }
-        }
-
-        private void RandommizeClientSpawnTimer()
-        {
-            _clientSpawnTimer = Random.Range(MinClientSpawn, MaxClientSpawn);
-        }
-
-        List<GameObject> PickClientFamily()
-        {
-            var familySize = Random.Range(1, _maxFamilySize);
-            var family = new List<GameObject>();
-            for (var i = 0; i < familySize; i++)
-            {
-                family.Add(AssetsManager.Clients[Mathf.CeilToInt(Random.Range(0, AssetsManager.Clients.Length))]);
-            }
-
-            return family;
+            AssetsManager.Phone.Ring();
         }
 
     }

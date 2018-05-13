@@ -1,17 +1,17 @@
-﻿using Assets.Scripts.UI.Abstract;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
-    public class ProgressBar : InteractiveUI
+    public class EventUI : MonoBehaviour
     {
 
         public Scrollbar ScrollBarUI;
+        public Image Icon;
 
         private void Start()
         {
-            SetCamera();
-            ScrollBarUI.size = 0;
+            ScrollBarUI.size = 1;
         }
 
         public void SetValue(float value)

@@ -55,11 +55,10 @@ MonoBehaviour:
   Icon: {fileID: 1062015251167758, guid: 86871ced92770f24ab8d3c82dd5348ae, type: 2}
   ProgressBar: {fileID: 1062015251167758, guid: 50bee31a02f7b744287adc98a7c88ad0,
     type: 2}
+  EventUI: {fileID: 114373151694876178, guid: 424be85dae4532346b8d5f13d0aaa960, type: 2}
   Interactives:
   - {fileID: 1635547528396072, guid: 45adf29d57b9f2641811e4816290a18e, type: 2}
-  - {fileID: 0}
-  Clients:
-  - {fileID: 1471014385769272, guid: 8627e1e9b232f0647bdf7067690c61ba, type: 2}
+  Clients: []
   ClientSpawner: {fileID: 0}
 --- !u!114 &114863910937408956
 MonoBehaviour:
@@ -72,3 +71,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d580e7336d74600449d70f3698ac6858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIManager: {fileID: 0}
